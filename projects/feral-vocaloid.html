@@ -1,0 +1,122 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css">
+	<link rel="stylesheet" href="../styles.css">
+	<link rel="stylesheet" href="../fonts/silkscreen.css">
+	<style>
+		#message {
+			min-height:200px;
+			font-style:italic;
+			font-size:7pt;
+			margin-bottom:20px;
+		}
+		.slidecontainer {
+			float:right;
+		  width: 92%; /* Width of the outside container */
+		}
+
+		/* The slider itself */
+		.slider {
+		  -webkit-appearance: none;  /* Override default CSS styles */
+		  appearance: none;
+		  width: 100%; /* Full-width */
+		  height: 25px; /* Specified height */
+		  background: #f62394; /* Grey background */
+		  outline: none; /* Remove outline */
+		  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+		  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+		  transition: opacity .2s;
+		}
+
+		/* Mouse-over effects */
+		.slider:hover {
+		  opacity: 1; /* Fully shown on mouse-over */
+		}
+
+		/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+		.slider::-webkit-slider-thumb {
+		  -webkit-appearance: none; /* Override default look */
+		  appearance: none;
+		  width: 25px; /* Set a specific slider handle width */
+		  height: 25px; /* Slider handle height */
+		  background: #0024ba; /* Green background */
+		  cursor: pointer; /* Cursor on hover */
+		}
+
+		.slider::-moz-range-thumb {
+		  width: 25px; /* Set a specific slider handle width */
+		  height: 25px; /* Slider handle height */
+		  background: #0024ba; /* Green background */
+		  cursor: pointer; /* Cursor on hover */
+		}
+		</style>
+    <script>
+
+    var nPhonemes = 42;
+    var phonemes = new Array("%", "(silence)", "@", "(breath intake)", "AE", "bat", "EY", "bait", "AO", "caught", "AX", "about", "IY", "beet", "EH", "bet", "IH", "bit", "AY", "bite", "IX", "roses", "AA", "father", "UW", "boot", "UH", "book", "UX", "bud", "OW", "boat", "AW", "bout", "OY", "boy", "b", "bin", "C", "chin", "d", "din", "D", "them", "f", "fin", "g", "gain", "h", "hat", "J", "jump", "k", "kin", "l", "limb", "m", "mat", "n", "nap", "N", "tang", "p", "pin", "r", "ran", "s", "sin", "S", "shin", "t", "tin", "T", "thin", "v", "van", "w", "wet", "y", "yet", "z", "zoo", "Z");
+    var t ="";
+
+    function getPhoneme() {
+        var n = Math.floor(Math.random()*nPhonemes)*2;
+        console.log(n+" ");
+        return phonemes[n];   // only evens
+    }
+	
+   
+    
+    </script>
+	<script>
+		function speakIt() {
+			var msg = new SpeechSynthesisUtterance();
+		    t = "[[inpt TUNE]]\n";
+		    var p = Math.floor(Math.random()*400)+100;
+		    for (i=0; i<100; i++) { 
+		       t = t+getPhoneme()+" ";
+		       t = t+"{";
+			   var dMax = document.getElementById("dMax").value;
+			   var dpMax = document.getElementById("dpMax").value;
+			   var p2Max = document.getElementById("p2Max").value;
+			   var dp2Max = document.getElementById("dp2Max").value;
+		       var d = Math.floor(Math.random()*dMax)+10;
+		       var dp = Math.floor(Math.random()*dpMax)-50;
+		       var p2 = Math.floor(Math.random()*p2Max);
+		       var dp2 = Math.floor(Math.random()*dp2Max)-100;
+		       p = p+dp;  // random walk
+		       t = t+"D "+ d;   // +"P "+ p+":0 }\n";
+		       t = t+" P "+ p+":0 " + (p+dp2) + ":"+p2+" } ";   //178.2:8 184.9:19 222.9:81 }\n";
+		       if ((Math.random()*100)>75) {
+			       t = t+" ~ "; 
+		       }
+		    }
+		    t = t+"[[inpt TEXT]]\n";
+		    document.getElementById("message").innerHTML = t;
+			msg.text = t;
+	        window.speechSynthesis.speak(msg);
+       }
+</script>
+</head>
+<body>
+	
+    
+	<center>	<div id="message"></div>
+		<div class="date-header">2017</div>
+	<div class="header">Feral Vocaloid</div></center>
+	<div class="description">The feral vocaloid lets you play with phoneme mode of the Web Speech API. The sliders set the maximum values for the various phoneme parameters. Dedicated to Matthew Underwood.</div>
+	<span class="description" style="float:left;font-style:italic;">d :</span> <div class="slidecontainer">
+	  <input type="range" min="1" max="1000" value="250" class="slider" id="dMax">
+	</div>
+	 <span class="description" style="clear:both;float:left;font-style:italic;">dp :</span>
+	<div class="slidecontainer">
+	 <input type="range" min="51" max="1000" value="100" class="slider" id="dpMax">
+	</div>
+	 <span class="description" style="clear:both;float:left;font-style:italic;">p2 :</span> 
+	<div class="slidecontainer">
+	 <input type="range" min="1" max="1000" value="100" class="slider" id="p2Max">
+	</div>
+	<span class="description" style="clear:both;float:left;font-style:italic;">dp2 :</span> 
+	<div class="slidecontainer">
+	  <input type="range" min="101" max="1000" value="200" class="slider" id="dp2Max">
+	</div>
+	<a class="button-link" href="javascript:speakIt();"><div style="clear:both;margin-top:10px;"class="button-inner">Generate and Speak</div></a>
+</body>
+</html>

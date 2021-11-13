@@ -1,0 +1,518 @@
+<html>
+<head>
+    <link rel="stylesheet" href="fonts/Serif/cmun-serif.css">
+	 <link rel="stylesheet" href="fonts/Serif/cmun-serif-slanted.css">
+    <link rel="stylesheet" href="fonts/SerifSlanted/cmun-serif-slanted.css">
+    <link rel="stylesheet" href="fonts/Typewriter/cmun-typewriter.css">
+	
+	
+	<style>
+		html, body {
+		    overflow: hidden;
+		}
+		#close-button {
+			position:fixed;
+			top:5%;
+			right:4%;
+			z-index:2000;
+		}
+		#page-wrapper-0 {
+                position: absolute;
+			    top: 0;
+			    bottom: 0;
+			    left: 0;
+			    right: 0;
+			    overflow: auto;
+		}
+		#page-wrapper-1 {
+			height:100%;
+			width:100%;
+			position:fixed;
+			top:0px;
+			left:0px;
+			opacity:1;
+			background-image:url("images/backgrounds/9.png");
+	    	  -webkit-transition: opacity 30s ease-out;
+	    	  -moz-transition: opacity 30s ease-out;
+	    	  -o-transition: opacity 30s ease-out;
+	    	  transition: opacity 30s ease-out;
+		}
+		#page-wrapper-2 {
+			height:100%;
+			width:100%;
+			position:fixed;
+			top:0px;
+			left:0px;
+			opacity:0;
+			background-image:url("images/backgrounds/15.png");
+	    	  -webkit-transition: opacity 30s ease-out;
+	    	  -moz-transition: opacity 30s ease-out;
+	    	  -o-transition: opacity 30ss ease-out;
+	    	  transition: opacity 30s ease-out;
+		}
+		.row-container {
+		  position: relative;
+		  width:508px;
+		  display: grid;
+		  grid-template:  auto / auto auto auto auto;
+		  grid-gap: 8px;
+		  margin: 30px 30px 30px 550px;
+		  padding: 0px;
+		}
+		.row-container-1 {
+		  position: relative;
+		  width:508px;
+		  display: grid;
+		  grid-template:  auto;
+		  margin: -20px 0px -20px 550px;
+		  padding: 0px;
+		}
+		.print-container {
+			width:125px;
+			border:none;
+			-webkit-box-shadow: 0px 0px 8px 0px rgba(255,255,255,1);
+			-moz-box-shadow: 0px 0px 8px 0px rgba(255,255,255,1);
+			box-shadow: 0px 0px 8px 0px rgba(255,255,255,1);
+			border-radius:20px;
+			overflow:hidden;
+		}
+		.year-label {
+			font-size:72pt;
+			padding:30px;
+		}
+		.print-thumb {
+			width:125px;
+		}
+		#summary-window {
+			background:#ffffffee;
+			position:fixed;
+			left:50px;
+			top:25px;
+			width:600px;
+			min-height:650px;
+			border:none;
+			border-radius:20px;
+			-webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
+			-moz-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
+			box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
+		}
+		html {
+			touch-action: none!important;
+		}
+		.selected {
+			width:105px;
+			border:10px solid #ffff00cc;
+			border-radius:20px;
+			padding:-20px -20px -20px -20px!important;
+			
+		}
+		#page-iframe-container {
+			background:#000000;
+			position:fixed;
+			left:2%;
+			top:2%;
+			width:96%;
+			min-height:96%;
+			border:none;
+			-webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
+			-moz-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
+			box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
+			border-radius:20px;
+			z-index:1000;
+		}
+		#loading-img {
+			position:fixed;
+			top:50%;
+			left:50%;
+			display:none;
+			z-index:5000;
+			transform:translate(-50%, -50%);
+		}
+		.selected {
+			-webkit-box-shadow: inset 0px 0px 20px 5px rgba(255,255,255,1);
+			-moz-box-shadow: inset 0px 0px 20px 5px rgba(255,255,255,1);
+			box-shadow: inset 0px 0px 20px 5px rgba(255,255,255,1);
+		}
+		#name-section {
+			color:#ffffff;
+			font-family:'Silkscreen';
+			font-size:17.5pt;
+			text-shadow: 0px 0px 7px #000000;
+		}
+		
+		@media only screen and (max-width: 1000px) {
+			.row-container {
+			  position: relative;
+			  width:250px;
+			  display: grid;
+			  grid-template:  auto / auto;
+			  grid-gap: 8px;
+			  padding: 0px;
+			}
+			.row-container-1 {
+			  position: relative;
+			  width:250px;
+			  display: grid;
+			  grid-template:  auto;
+			  padding: 0px;
+			}
+			#name-section {
+				color:#ffffff;
+				font-family:'Silkscreen';
+				font-size:12.5pt;
+				text-shadow: 0px 0px 7px #000000;
+			}
+		}
+		@media only screen and (max-height: 1500px) {
+			#summary-window {
+				/*min-height:850px;*/
+			}
+		}
+		
+	</style>
+	<script>
+		function getRandomInt(min, max) {
+		    min = Math.ceil(min);
+		    max = Math.floor(max);
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		
+		var state = 0;
+		var clock = setInterval(toggleBackgroundState, 31000);
+		
+		function toggleBackgroundState() {
+			
+			if (state == 0) {
+				
+				document.getElementById('page-wrapper-2').style.backgroundImage = "url('images/backgrounds/" + getRandomInt(1, 100) + ".png')";
+				document.getElementById('page-wrapper-1').style.opacity = 0;
+	            document.getElementById('page-wrapper-2').style.opacity = 1;
+			    state = 1;
+			} else {
+				document.getElementById('page-wrapper-1').style.backgroundImage = "url('images/backgrounds/" + getRandomInt(1, 100) + ".png')";
+				document.getElementById('page-wrapper-1').style.opacity = 1;
+	            document.getElementById('page-wrapper-2').style.opacity = 0;
+			    state = 0;
+			}
+		}
+		
+		function openPage(url) {
+			document.getElementById('page-iframe-container').src = "";
+			document.getElementById('page-iframe-container').src = url;
+			document.getElementById('page-iframe-container').style.display = "block";
+			document.getElementById('close-button').style.display = "block";
+			document.getElementById('loading-img').style.display = "block";
+		}
+		
+		function openSummary(url, selected) {
+			document.getElementById('summary-window').style["display"] = "block";
+			document.getElementById('summary-window').src = url;
+			document.getElementById('close-button').style.display = "none";
+		}
+		
+		function hideLoader() {
+			document.getElementById('loading-img').style.display = "none";
+		}
+		
+		function closePage() {
+		    document.getElementById('loading-img').style.display = "none";
+			document.getElementById('page-iframe-container').style.display = "none";
+			document.getElementById('close-button').style.display = "none";
+		}
+		
+		function iframeOnLoad() {	
+			document.getElementById('loading-img').style.display = "none";
+		}
+		
+		function onMenuSelect() {
+			var menuItems = document.getElementsByClassName('selected');
+			for (var i = 0; i < menuItems.length; ++i) {
+			    menuItems[i].classList.remove('selected');
+			}
+            window.event.target.className += " selected";
+		}
+		</script>
+	   
+</head>
+<body onLoad="javascript:toggleBackgroundState();">
+	<div id="page-wrapper-0">
+
+	<div id="page-wrapper-1">
+	</div>
+	<div id="page-wrapper-2">
+	</div>
+	    <img id="loading-img" src="images/loading.svg"/>
+	    <a id="close-button" style="display:none;" href="javascript:closePage();"><img src="images/navMenuExit.png"/></a>
+		<iframe id="summary-window" style="display:none;"></iframe>
+		<iframe id="page-iframe-container"  onload="iframeOnLoad()" style="display:none;"><img src="images/loading.gif"></iframe>
+		
+		
+	<center>
+    <div id="print-full">&nbsp;</div>
+	<div class="row-container">
+		<!--Fluxly-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('https://fluxly.com');"><img class="print-thumb" src="images/thumbs/fluxly.png"/></a>
+	    </div>
+		<!--cryptozoo-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('http://cryptozoologic.com');"><img class="print-thumb" src="images/thumbs/cryptozoologic.png"/></a>
+	    </div>
+		<!--Mockerspace/Fakerspace-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('projects/mockerspace/mockerspace.html');"><img class="print-thumb" src="images/thumbs/mockerspace1.png"/></a>
+	    </div>
+		<!--fs variations-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/fluxamasynth-modules.html');"><img class="print-thumb" src="images/thumbs/fluxamasynth.jpg"/></a>
+	    </div>
+	</div>
+    <div class="row-container row-container-1">
+		<div id="name-section">FLUXLY + FROB / SHAWN WALLACE</div>
+	</div>
+	<div class="row-container">
+		<!--Bloopnet-->
+		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/bloopnet.html');"><img class="print-thumb" src="images/thumbs/bloopnet.png"/></a>
+	    </div>
+
+		<!--Machines of the Mockerspace-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('programs/mokrbot-gen.html');"><img class="print-thumb" src="images/thumbs/mockerspace2.png"/></a>
+	    </div>
+		<!--Fluxly Boombox-->
+		<!--<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/fluxly-boombox.html');"><img class="print-thumb" src="images/thumbs/fluxlyboombox.png"/></a>
+	    </div>
+			-->
+		<!--Diaglyphs-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('programs/diaglyphs.html');"><img class="print-thumb" src="images/thumbs/diaglyphs.png"/></a>
+	    </div>
+		<!---->
+		<!--2019-->
+		<!--orb project-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('http://fluxlyandfrob.com/orb-project.us');"><img class="print-thumb" src="images/thumbs/orbproject.png"/></a>
+	    </div>
+		<!--redacted tower-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/redacted-tower.html');"><img class="print-thumb" src="images/thumbs/redactedtower.png"/></a>
+	    </div>
+		<!--unruly-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/unruly-studios.html');"><img class="print-thumb" src="images/thumbs/unrulystudios.png"/></a>
+	    </div>
+		<!--patches-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/patches.html');"><img class="print-thumb" src="images/thumbs/patches.jpg"/></a>
+	    </div>
+		<!---->
+		<!--Patches-->
+		<!--mark c project
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/markc.html');"><img class="print-thumb" src="images/thumbs/markc.png"/></a>
+	    </div>-->
+		<!--thompson folk motif-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('projects/thompson.html');"><img class="print-thumb" src="images/thumbs/thompson.png"/></a>
+	    </div>
+		<!--2017-->
+		<!--big friend-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/bigfriend.html');"><img class="print-thumb" src="images/thumbs/bigfriend.png"/></a>
+	    </div>
+		<!--wrnd/soundboxen-->
+		<!--<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/soundboxen.html');"><img class="print-thumb" src="images/thumbs/yakshaver.png"/></a>
+	    </div>
+			-->
+			<div  class="print-container" onclick="onMenuSelect()"> 
+				<a href="javascript:openSummary('projects/benjolin2.html');"><img class="print-thumb" src="images/thumbs/benjolin2.png"/></a>
+		    </div>
+		<!--feral vocaloid-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/feral-vocaloid.html');"><img class="print-thumb" src="images/thumbs/feralvocaloid.png"/></a>
+	    </div>
+		<!--boxenlights journal-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('programs/boxenlines.html');"><img class="print-thumb" src="images/thumbs/boxenlines.png"/></a>
+	    </div>
+		<!--Electronics project graveyard-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('projects/graveyard/graveyard.html');"><img class="print-thumb" src="images/thumbs/graveyard.png"/></a>
+	    </div>
+		<!---->
+		<!--2016-->
+		<!--reverbalizer-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/reverbalizer.html');"><img class="print-thumb" src="images/thumbs/reverbalizer.png"/></a>
+	    </div>
+		<!--Oh Eye: Analog Inputs for Raspberry Pi-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/oh-
+			eye.html');"><img class="print-thumb" src="images/thumbs/oheye.png"/></a>
+	    </div>
+		<!--Benjolin-->
+		<!--<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/benjolin.html');"><img class="print-thumb" src="images/thumbs/benjolin.png"/></a>
+	    </div>
+			-->
+		<!---->
+		<!--2015-->
+		<!--arduino poster-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/arduino-poster.html');"><img class="print-thumb" src="images/thumbs/arduinoposter.png"/></a>
+	    </div>
+		<!--Mondo Brickbridge for LEGO Mindstorms-->
+		<!--<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/brickbridge.html');"><img class="print-thumb" src="images/thumbs/brickbridge.png"/></a>
+	    </div>-->
+		<!---->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/signs.html');"><img class="print-thumb" src="images/thumbs/signs.jpg"/></a>
+	    </div>
+		<!--2014-->
+		<!--industries/fab lab slides/rif materials-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/labs-workshops.html');"><img class="print-thumb" src="images/thumbs/fablab.jpg"/></a>
+	    </div>
+	    <!--Modern Device-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/modern-device.html');"><img class="print-thumb" src="images/thumbs/moderndevice.jpg"/></a>
+	    </div>
+		<!--Fab Academy-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/fab-academy.html');"><img class="print-thumb" src="images/thumbs/fabacademy.jpg"/></a>
+	    </div>
+		<!---->
+		<!--2013-->
+		<!--Getting Started With Raspberry Pi-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/gsw-raspi.html');"><img class="print-thumb" src="images/thumbs/gsw.jpg"/></a>
+	    </div>
+		<!--Laughing Dice-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/laughing-dice.html');"><img class="print-thumb" src="images/thumbs/laughingdice.jpg"/></a>
+	    </div>
+		<!---->
+		<!--2012-->
+		<!--DR-OM-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/drom.html');"><img class="print-thumb" src="images/thumbs/drom.png"/></a>
+	    </div>
+		<!--3D Printer Trading Cards (From the Future!)-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/make-graphics.html');"><img class="print-thumb" src="images/thumbs/3dthumb.jpg"/></a>
+	    </div>
+		<!---->
+		<!--2011-->
+		<!--Noisemusick, the App-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/noisemusick.html');"><img class="print-thumb" src="images/thumbs/noisemusick.png"/></a>
+	    </div>
+		<!--O’Reilly Media-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/oreilly.html');"><img class="print-thumb" src="images/thumbs/oreilly.png"/></a>
+	    </div>
+		<!---->
+		<!--2010-->
+		<!--Fluxamasynth-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/fluxamasynth-shield.html');"><img class="print-thumb" src="images/thumbs/fluxsynth1.jpg"/></a>
+	    </div>
+		<!--One Theremin Per Child-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/otpc.html');"><img class="print-thumb" src="images/thumbs/otpc.png"/></a>
+	    </div>
+		<!--AS220 Labs Graphics-->
+		
+		<!---->
+		<!--2009-->
+		<!--555 Noisemusick Kit-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/noisemusick-kit.html');"><img class="print-thumb" src="images/thumbs/noisemusick2.jpg"/></a>
+	    </div>
+		<!--Hair and Balanced-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/hair-and-balanced.html');"><img class="print-thumb" src="images/thumbs/hairbalanced.jpg"/></a>
+	    </div>
+		<!--drawbot portraits/Drawbot Bézier Helper Tool-->
+		<!--<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/drawbot-portraits.html');"><img class="print-thumb" src="images/thumbs/drawbotbezier.png"/></a>
+	    </div>-->
+		<!--Fluxamabob Drawbot-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/drawbot.html');"><img class="print-thumb" src="images/thumbs/drawbot.jpg"/></a>
+	    </div>
+		<!---->
+		<!--2003 -->
+		<!--Perl Graphics Programming-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/pgp.html');"><img class="print-thumb" src="images/thumbs/pgp.jpg"/></a>
+	    </div>
+		<!--Mzo game
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/mzo.html');"><img class="print-thumb" src="images/thumbs/mzo.png"/></a>
+	    </div>-->
+		<!---->
+		<!--2001-->
+		<!--Solo Music-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/solo.html');"><img class="print-thumb" src="images/thumbs/solo.gif"/></a>
+	    </div>
+		<!--Panic Band-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/panic-band.html');"><img class="print-thumb" src="images/thumbs/hispanic.jpg"/></a>
+	    </div>
+		<!---->
+		<!--1998-->
+		<!--Programming Web Graphics-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/pwg.html');"><img class="print-thumb" src="images/thumbs/pwg.jpg"/></a>
+	    </div>
+		<!---->
+		<!--1995-->
+		<!--Amoebic Ensemble-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/amoebic-ensemble.html');"><img class="print-thumb" src="images/thumbs/amoebic.jpg"/></a>
+	    </div>
+		<!--The Bolero Club-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openPage('projects/bolero/bolero.html');"><img class="print-thumb" src="images/thumbs/bolero.jpg"/></a>
+	    </div>
+		<!--The AS220 Complex Magazine-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/complex-magazine.html');"><img class="print-thumb" src="images/thumbs/complex.png"/></a>
+	    </div>
+		<!--frodus-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/frodus/frodus.html');"><img class="print-thumb" src="images/thumbs/frodus.png"/></a>
+	    </div>
+	</div>
+	<div class="row-container">
+		<!---->
+		<!--Github-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="https://github.com/fluxly"><img class="print-thumb" src="projects/images/github.png"/></a>
+	    </div>
+		<!---->
+		<!--Instagram-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="https://instagram.com/fluxlyandfrob"><img class="print-thumb" src="projects/images/instagram.png"/></a>
+	    </div>
+		<!---->
+		<!--Twitter-->
+		<div  class="print-container" onclick="onMenuSelect()"> 
+			<a href="https://twitter.com/fluxly"><img class="print-thumb" src="projects/images/twitter.png"/></a>
+	    </div>
+		<!---->
+		<!--Twitter-->
+		<div  class="print-container-blank" > 
+			<img class="print-thumb" src="projects/images/blank.png"/>
+	    </div>
+		<!---->
+    </div>
+</center>
+</body>
+</html>

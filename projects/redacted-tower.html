@@ -1,0 +1,89 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css">
+	<link rel="stylesheet" href="../styles.css">
+	<link rel="stylesheet" href="../fonts/silkscreen.css">
+</head>
+<body onload="startSound()">
+	
+	<iframe class="featured-image" src="https://player.vimeo.com/video/345226044" width="540px" height="360px" frameborder="0" allow="autoplay;"></iframe>
+	<center><div class="date-header">2019</div>
+	<div class="header">Redacted Tower</div></center>
+<img style="float:left; width:150px; margin-right:20px;" src="images/redacted-tower1.png">
+<div class="description">This game answers the question: what if I could play Tetris with the big black censored blocks of the Mueller Report?
+</div>
+
+<div class="description">This is a building game based on the Open Redacted Blocks (ORB) Project. This is the first creative project to use the Open Redacted Block repository.
+</div>
+<div class="description">
+The ORB Project's mission is to provide an open set of data and visual assets to allow artists and designers easy access to ORBs (Open Redaction Blocks) for use in their creative works. All ORB assets and data are released under a Creative Commons license, and are available for free to the public at http://orb-project.us and on Github.
+</div>
+<br/>
+<img width="540px;" src="images/redacted-tower2.png">
+<br/><br/>
+<div class="description">
+	The background music is a Pure Data patch that plays sampled cellos on the Vivian Loopbox, alongside generated wind from Andy Farnell's excellent book <i>Designing Sound</i>.
+	<br/><br/>
+    <div id="movable-keyboard">
+  	  <div class="sprites">
+  		<div id="sprite0" class="sprite">
+  	    </div>
+  	    <div id="sprite1" class="sprite">
+  	    </div>
+  	    <div id="sprite2" class="sprite">
+  	    </div>
+  	    <div id="sprite3" class="sprite">
+  	    </div>
+  	    <div id="sprite4" class="sprite">
+  	    </div>
+  	    <div id="sprite5" class="sprite">
+  	    </div>
+  	    <div id="sprite6" class="sprite">
+  	    </div>
+  	  </div>
+    </div>
+	
+	<img width="540px" src="images/redacted-patch.png">
+	
+	<center><a target="new" href="https://apps.apple.com/us/app/redacted-tower/id1463453940"><img src="images/availableNow.png"></a></center>
+	
+    <script type="text/javascript" src="../programs/howler.js/src/howler.core.js"></script>
+    <script src="../programs/sprite.js"></script>
+  
+    <script>
+	  
+  	var backgroundSound = new Howl({
+          src: ['./mp3s/background-louder.mp3'], loop: true
+        });
+	  
+  	var timer1;
+      var timer2;
+  	var timer3;
+      var timer4;
+  	var timer5;
+      var timer6;
+  	var timer7;
+   
+  	function startSound() {
+  		console.log("start sound");
+
+  		backgroundSound.play();
+  		sprite.play("sprite0");
+  		sprite.play("sprite1");
+  		sprite.play("sprite2");
+  		sprite_2.play("sprite3");
+  		sprite_2.play("sprite4");
+  		sprite_2.play("sprite5");
+  		sprite_2.play("sprite6");
+  	    timer1 = setInterval(function sprite1Timer() { sprite.play("sprite0"); }, 8000);
+  	    timer2 = setInterval(function sprite2Timer() { sprite.play("sprite1"); }, 8600);
+  		timer3 = setInterval(function sprite3Timer() { sprite.play("sprite2"); }, 8200);
+  	    timer4 = setInterval(function sprite4Timer() { sprite_2.play("sprite3"); }, 8500);
+  		timer5 = setInterval(function sprite5Timer() { sprite_2.play("sprite4"); }, 8400);
+  	    timer6 = setInterval(function sprite6Timer() { sprite_2.play("sprite5"); }, 8300);
+  		timer7 = setInterval(function sprite7Timer() { sprite_2.play("sprite6"); }, 8100);
+  	}
+    </script>
+</body>
+
+</html>

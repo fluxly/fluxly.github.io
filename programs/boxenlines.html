@@ -1,0 +1,68 @@
+<html>
+	<head>
+	    <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css">
+		<link rel="stylesheet" href="../styles.css">
+		<link rel="stylesheet" href="../fonts/silkscreen.css">
+	<style>
+		html {
+			
+		}
+		#page-wrapper {
+			margin:0px auto 0px auto;
+			
+		}
+		.featured-image {
+			border:1px solid #333333;
+		}
+		canvas {
+			
+			width:400px!important;
+			height:400px;
+			padding-left: 0;
+		    padding-right: 0;
+			margin:0px auto 0px auto;
+			display: block;
+		    width: 100%;
+			z-index:100;
+			border:none;
+		}
+		canvas:focus {
+			outline:none;
+		}
+		#loader {
+			position:relative;
+			top:150px;
+			left:50%;
+			transform:translate(-50%, 0%);
+			z-index:10;
+			
+		}
+		@font-face {
+		  font-family: Providence;
+		  src: url("Providence.ttf");
+		}
+
+</style>
+		<script src="processing.min.js"></script>
+		<script>
+			function setup() {
+				document.getElementById("canvas").focus();
+				
+			}
+		</script>
+	</head>
+			
+	<body onload="setup()">
+    <div id="pagewrapper">
+	<center><canvas id="canvas" class="featured-image" data-processing-sources="boxenlines.pde"></canvas><i class="arrow-click up"></i><i>Click me</i></center>
+	<br/>
+	<center><div class="date-header">2017</div>
+	<div class="header">Boxenlines</div></center>
+	<div class="description">A Journal of Boxes and Lines. Over 500 pages, volume 1 issue 1 of this generative journal documents thousands of boxenlines constructions. You can use the widget above to make your own constructions by hitting the mouse button or keyboard to refresh. </div><br/>
+	<img width="540px" src="images/boxenlines1.png"/><br/><br/>
+	<a class="button-link" href="downloads/BoxenLinesVol1Issue1_DRAFT.pdf"><div class="button-inner">Download Boxenlines #1</div></a>
+	
+    </div>
+	</body>
+</html>
+	

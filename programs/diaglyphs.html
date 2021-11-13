@@ -1,0 +1,63 @@
+<html>
+	<head>
+	    <link rel="stylesheet" href="../fonts/Serif/cmun-serif.css">
+		<link rel="stylesheet" href="../styles.css">
+		<link rel="stylesheet" href="../fonts/silkscreen.css">
+	<style>
+		html {
+			padding-top:340px;
+		}
+		#page-wrapper {
+			margin:0px auto 0px auto;
+			
+		}
+		canvas {
+			position:fixed;
+			height:300px;
+			padding-left: 0;
+		    padding-right: 0;
+			top:30px;
+			margin-left: auto;
+		    margin-right: auto;
+		    display: block;
+		    width: 100%;
+			z-index:100;
+			border:none;
+		}
+		canvas:focus {
+			outline:none;
+		}
+		#loader {
+			position:fixed;
+			top:150px;
+			left:50%;
+			transform:translate(-50%, 0%);
+			z-index:10;
+			
+		}
+		@font-face {
+		  font-family: Providence;
+		  src: url("Providence.ttf");
+		}
+		</style>
+		<script src="processing.min.js"></script>
+		<script>
+			function setup() {
+				document.getElementById("canvas").focus();
+				
+			}
+		</script>
+	</head>
+			
+	<body onload="setup()">
+    <div id="pagewrapper">
+	<center><img id="loader" src="../images/loading.svg"/><canvas id="canvas" class="featured-image" data-processing-sources="diaglyphs.pde"></canvas><i class="arrow-click up"></i><i>1-6/mouse</i></center>
+	
+	<center><div class="date-header">2020</div>
+	<div class="header">Diaglyphs</div></center>
+	<div class="description">A Diaglyph generator.</div>
+    <div class="description">Use the 1-6 keys to control the number of glyphs. Mouse around the canvas to control the relative speeds.</div>
+    </div>
+	</body>
+</html>
+	
