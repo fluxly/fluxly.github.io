@@ -86,10 +86,11 @@
 		#summary-window {
 			background:#ffffffee;
 			position:fixed;
-			left:50px;
-			top:25px;
+			left:45px;
+			top:2.5%;
 			width:600px;
 			min-height:650px;
+			height:95%;
 			border:none;
 			border-radius:20px;
 			-webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
@@ -139,13 +140,37 @@
 			font-size:17.5pt;
 			text-shadow: 0px 0px 7px #000000;
 		}
-		
-		@media only screen and (max-width: 1000px) {
+
+		@media only screen and (max-width: 1350px) {
 			.row-container {
 			  position: relative;
 			  width:250px;
 			  display: grid;
-			  grid-template:  auto / auto;
+			  grid-template:  auto / auto auto;
+			  grid-gap: 8px;
+			  padding: 0px;
+			}
+			.row-container-1 {
+			  position: relative;
+			  width:250px;
+			  display: grid;
+			  grid-template:  auto auto;
+			  padding: 0px;
+			}
+			#name-section {
+				color:#ffffff;
+				font-family:'Silkscreen';
+				font-size:12.5pt;
+				text-shadow: 0px 0px 7px #000000;
+			}
+		}
+		@media only screen and (max-width: 1050px) {
+			.row-container {
+			  position: relative;
+			  left:50px;
+			  width:250px;
+			  display: grid;
+			  grid-template:  auto / auto auto;
 			  grid-gap: 8px;
 			  padding: 0px;
 			}
@@ -163,11 +188,34 @@
 				text-shadow: 0px 0px 7px #000000;
 			}
 		}
-		@media only screen and (max-height: 1500px) {
-			#summary-window {
-				/*min-height:850px;*/
+		@media only screen and (max-width: 1000px) {
+			.row-container {
+			  position: relative;
+			  left:50px;
+			  width:250px;
+			  display: grid;
+			  grid-template:  auto / auto;
+			  grid-gap: 8px;
+			  padding: 0px;
+	         
+			}
+			.row-container-1 {
+			  position: relative;
+			  width:250px;
+			  display: grid;
+			  grid-template:  auto;
+			  padding: 0px;
+			}
+			#name-section {
+				color:#ffffff;
+				width:120px;
+				font-family:'Silkscreen';
+				font-size:12.5pt;
+				text-shadow: 0px 0px 7px #000000;
 			}
 		}
+	
+
 		
 	</style>
 	<script>
@@ -275,12 +323,22 @@
 		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
 			<a href="javascript:openSummary('projects/fluxlyarcade.html');"><img class="print-thumb" src="images/thumbs/fluxly-arcade.png"/></a>
 	    </div>
-		
+		<!--Snoofy-->
+		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/snoofy.html');"><img class="print-thumb" src="images/thumbs/snoofy400.png"/></a>
+	    </div>
+		<!--Sketchbook StyleGAN-->
+		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/sketchbookGAN.html');"><img class="print-thumb" src="images/thumbs/sketchbookGAN.png"/></a>
+	    </div>
+		<!--Bolero StyleGAN-->
+		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
+			<a href="javascript:openSummary('projects/boleroGAN.html');"><img class="print-thumb" src="images/thumbs/boleroGAN.png"/></a>
+	    </div>
 		<!--Bloopnet-->
 		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
 			<a href="javascript:openSummary('projects/bloopnet.html');"><img class="print-thumb" src="images/thumbs/bloopnet.png"/></a>
 	    </div>
-
 		<!--Machines of the Mockerspace-->
 		<div  class="print-container" onclick="onMenuSelect()"> 
 			<a href="javascript:openSummary('programs/mokrbot-gen.html');"><img class="print-thumb" src="images/thumbs/mockerspace2.png"/></a>
@@ -298,7 +356,7 @@
 		<!--2019-->
 		<!--orb project-->
 		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('http://fluxlyandfrob.com/orb-project.us');"><img class="print-thumb" src="images/thumbs/orbproject.png"/></a>
+			<a href="javascript:openPage('http://fluxly.com/orb-project.us');"><img class="print-thumb" src="images/thumbs/orbproject.png"/></a>
 	    </div>
 		<!--redacted tower-->
 		<div  class="print-container" onclick="onMenuSelect()"> 
