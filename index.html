@@ -1,581 +1,503 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="fonts/Serif/cmun-serif.css">
-	 <link rel="stylesheet" href="fonts/Serif/cmun-serif-slanted.css">
-    <link rel="stylesheet" href="fonts/SerifSlanted/cmun-serif-slanted.css">
-    <link rel="stylesheet" href="fonts/Typewriter/cmun-typewriter.css">
-	
-	
-	<style>
-		html, body {
-		    overflow: hidden;
-		}
-		#close-button {
-			position:fixed;
-			top:5%;
-			right:4%;
-			z-index:2000;
-		}
-		#page-wrapper-0 {
-                position: absolute;
-			    top: 0;
-			    bottom: 0;
-			    left: 0;
-			    right: 0;
-			    overflow: auto;
-		}
-		#page-wrapper-1 {
-			height:100%;
-			width:100%;
-			position:fixed;
-			top:0px;
-			left:0px;
-			opacity:1;
-			background-image:url("images/backgrounds/9.png");
-	    	  -webkit-transition: opacity 30s ease-out;
-	    	  -moz-transition: opacity 30s ease-out;
-	    	  -o-transition: opacity 30s ease-out;
-	    	  transition: opacity 30s ease-out;
-		}
-		#page-wrapper-2 {
-			height:100%;
-			width:100%;
-			position:fixed;
-			top:0px;
-			left:0px;
-			opacity:0;
-			background-image:url("images/backgrounds/15.png");
-	    	  -webkit-transition: opacity 30s ease-out;
-	    	  -moz-transition: opacity 30s ease-out;
-	    	  -o-transition: opacity 30ss ease-out;
-	    	  transition: opacity 30s ease-out;
-		}
-		.row-container {
-		  position: relative;
-		  width:508px;
-		  display: grid;
-		  grid-template:  auto / auto auto auto auto;
-		  grid-gap: 8px;
-		  margin: 30px 30px 30px 550px;
-		  padding: 0px;
-		}
-		.row-container-1 {
-		  position: relative;
-		  width:508px;
-		  display: grid;
-		  grid-template:  auto;
-		  margin: -20px 0px -20px 550px;
-		  padding: 0px;
-		}
-		.print-container {
-			width:125px;
-			border:none;
-			-webkit-box-shadow: 0px 0px 8px 0px rgba(255,255,255,1);
-			-moz-box-shadow: 0px 0px 8px 0px rgba(255,255,255,1);
-			box-shadow: 0px 0px 8px 0px rgba(255,255,255,1);
-			border-radius:20px;
-			overflow:hidden;
-		}
-		.year-label {
-			font-size:72pt;
-			padding:30px;
-		}
-		.print-thumb {
-			width:125px;
-		}
-		#summary-window {
-			background:#ffffffee;
-			position:fixed;
-			left:45px;
-			top:2.5%;
-			width:600px;
-			min-height:650px;
-			height:95%;
-			border:none;
-			border-radius:20px;
-			-webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
-			-moz-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
-			box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
-		}
-		html {
-			touch-action: none!important;
-		}
-		.selected {
-			width:105px;
-			border:10px solid #ffff00cc;
-			border-radius:20px;
-			padding:-20px -20px -20px -20px!important;
-			
-		}
-		#page-iframe-container {
-			background:#000000;
-			position:fixed;
-			left:2%;
-			top:2%;
-			width:96%;
-			min-height:96%;
-			border:none;
-			-webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
-			-moz-box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
-			box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);
-			border-radius:20px;
-			z-index:1000;
-		}
-		#loading-img {
-			position:fixed;
-			top:50%;
-			left:50%;
-			display:none;
-			z-index:5000;
-			transform:translate(-50%, -50%);
-		}
-		.selected {
-			-webkit-box-shadow: inset 0px 0px 20px 5px rgba(255,255,255,1);
-			-moz-box-shadow: inset 0px 0px 20px 5px rgba(255,255,255,1);
-			box-shadow: inset 0px 0px 20px 5px rgba(255,255,255,1);
-		}
-		#name-section {
-			color:#ffffff;
-			font-family:'Silkscreen';
-			font-size:17.5pt;
-			text-shadow: 0px 0px 7px #000000;
-		}
-
-		@media only screen and (max-width: 1350px) {
-			.row-container {
-			  position: relative;
-			  width:250px;
-			  display: grid;
-			  grid-template:  auto / auto auto;
-			  grid-gap: 8px;
-			  padding: 0px;
-			}
-			.row-container-1 {
-			  position: relative;
-			  width:250px;
-			  display: grid;
-			  grid-template:  auto auto;
-			  padding: 0px;
-			}
-			#name-section {
-				color:#ffffff;
-				font-family:'Silkscreen';
-				font-size:12.5pt;
-				text-shadow: 0px 0px 7px #000000;
-			}
-		}
-		@media only screen and (max-width: 1050px) {
-			.row-container {
-			  position: relative;
-			  left:50px;
-			  width:250px;
-			  display: grid;
-			  grid-template:  auto / auto auto;
-			  grid-gap: 8px;
-			  padding: 0px;
-			}
-			.row-container-1 {
-			  position: relative;
-			  width:250px;
-			  display: grid;
-			  grid-template:  auto;
-			  padding: 0px;
-			}
-			#name-section {
-				color:#ffffff;
-				font-family:'Silkscreen';
-				font-size:12.5pt;
-				text-shadow: 0px 0px 7px #000000;
-			}
-		}
-		@media only screen and (max-width: 1000px) {
-			.row-container {
-			  position: relative;
-			  left:50px;
-			  width:250px;
-			  display: grid;
-			  grid-template:  auto / auto;
-			  grid-gap: 8px;
-			  padding: 0px;
-	         
-			}
-			.row-container-1 {
-			  position: relative;
-			  width:250px;
-			  display: grid;
-			  grid-template:  auto;
-			  padding: 0px;
-			}
-			#name-section {
-				color:#ffffff;
-				width:120px;
-				font-family:'Silkscreen';
-				font-size:12.5pt;
-				text-shadow: 0px 0px 7px #000000;
-			}
-		}
-	
-
-		
-	</style>
-	<script>
-		function getRandomInt(min, max) {
-		    min = Math.ceil(min);
-		    max = Math.floor(max);
-		    return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
-		
-		var state = 0;
-		var clock = setInterval(toggleBackgroundState, 31000);
-		
-		function toggleBackgroundState() {
-			
-			if (state == 0) {
-				
-				document.getElementById('page-wrapper-2').style.backgroundImage = "url('images/backgrounds/" + getRandomInt(1, 100) + ".png')";
-				document.getElementById('page-wrapper-1').style.opacity = 0;
-	            document.getElementById('page-wrapper-2').style.opacity = 1;
-			    state = 1;
-			} else {
-				document.getElementById('page-wrapper-1').style.backgroundImage = "url('images/backgrounds/" + getRandomInt(1, 100) + ".png')";
-				document.getElementById('page-wrapper-1').style.opacity = 1;
-	            document.getElementById('page-wrapper-2').style.opacity = 0;
-			    state = 0;
-			}
-		}
-		
-		function openPage(url) {
-			document.getElementById('page-iframe-container').src = "";
-			document.getElementById('page-iframe-container').src = url;
-			document.getElementById('page-iframe-container').style.display = "block";
-			document.getElementById('close-button').style.display = "block";
-			document.getElementById('loading-img').style.display = "block";
-		}
-		
-		function openSummary(url, selected) {
-			document.getElementById('summary-window').style["display"] = "block";
-			document.getElementById('summary-window').src = url;
-			document.getElementById('close-button').style.display = "none";
-		}
-		
-		function hideLoader() {
-			document.getElementById('loading-img').style.display = "none";
-		}
-		
-		function closePage() {
-		    document.getElementById('loading-img').style.display = "none";
-			document.getElementById('page-iframe-container').style.display = "none";
-			document.getElementById('close-button').style.display = "none";
-		}
-		
-		function iframeOnLoad() {	
-			document.getElementById('loading-img').style.display = "none";
-		}
-		
-		function onMenuSelect() {
-			var menuItems = document.getElementsByClassName('selected');
-			for (var i = 0; i < menuItems.length; ++i) {
-			    menuItems[i].classList.remove('selected');
-			}
-            window.event.target.className += " selected";
-		}
-		</script>
-	   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+    <title>Fluxly and Frob / Shawn Wallace</title>
+    <meta name="description" content="Fluxly and Frob / Shawn Wallace">
+    <link rel="icon" type="image/x-icon" href="./fav-icon/favicon.ico">
+    <script language="javascript" type="text/javascript" src="../../core/libs/p5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../core/libs/Box2d.min.js"></script>
+    <!--<script type="module"  src="./index.js"></script>-->
+	<script type="module"  src="./ravel-dist/bundle.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="./fonts/Serif/cmun-serif.css">
+	<link rel="stylesheet" href="./fonts/silkscreen.css">
 </head>
-<body onLoad="javascript:toggleBackgroundState();">
-	<div id="page-wrapper-0">
-
-	<div id="page-wrapper-1">
-	</div>
-	<div id="page-wrapper-2">
-	</div>
-	    <img id="loading-img" src="images/loading.svg"/>
-	    <a id="close-button" style="display:none;" href="javascript:closePage();"><img src="images/navMenuExit.png"/></a>
-		<iframe id="summary-window" style="display:none;"></iframe>
-		<iframe id="page-iframe-container"  onload="iframeOnLoad()" style="display:none;"><img src="images/loading.gif"></iframe>
-		
-		
-	<center>
-    <div id="print-full">&nbsp;</div>
-	<div class="row-container">
+<body>
+<ravel-crossfade-background></ravel-crossfade-background>
+<div id="page-wrapper">
+	<div class="grid-container">
 		<!--Fluxly-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('https://fluxly.com');"><img class="print-thumb" src="images/thumbs/fluxly.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="fluxly" 
+			label=""  
+			src="scrapbooks/fluxly.html"
+			icon="images/thumbs/fluxly.png"
+		></ravel-scrapbook>
 		<!--cryptozoo-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('http://cryptozoologic.com');"><img class="print-thumb" src="images/thumbs/cryptozoologic.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="cryptozoologic"
+			label="" 
+			src="scrapbooks/cryptozoologic.html"
+			icon="images/thumbs/cryptozoologic.png"
+		></ravel-scrapbook>
 		<!--Mockerspace/Fakerspace-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('projects/mockerspace/mockerspace.html');"><img class="print-thumb" src="images/thumbs/mockerspace1.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="mockerspace-fakerspace"
+			label="" 
+			src="scrapbooks/mockerspace-fakerspace.html"
+			icon="images/thumbs/mockerspace1.png"
+		></ravel-scrapbook>
 		<!--fs variations-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/fluxamasynth-modules.html');"><img class="print-thumb" src="images/thumbs/fluxamasynth.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="fluxamasynth-modules"
+			label="" 
+			src="scrapbooks/fluxamasynth-modules.html"
+			icon="images/thumbs/fluxamasynth.jpg"
+		></ravel-scrapbook>
 	</div>
-    <div class="row-container row-container-1">
-		<div id="name-section">FLUXLY + FROB / SHAWN WALLACE</div>
-	</div>
-	<div class="row-container">
+
+	<div id="title-section">FLUXLY + FROB / SHAWN WALLACE</div>
+
+	<div class="grid-container">
+		<ravel-scrapbook 
+		    src="scrapbooks/cryptid-garden.html"
+			icon="images/thumbs/cryptid-garden-thumb.png"
+		    anchor="cryptid-garden" label="Cryptid Garden"
+		></ravel-scrapbook>
+		<ravel-scrapbook 
+		    src="scrapbooks/mokrbot.html"
+			icon="images/thumbs/mokrbot-thumb.png"
+		    anchor="mokrbot" label="Mokrbot Poster"
+		></ravel-scrapbook>
+		<ravel-scrapbook 
+		    src="scrapbooks/the-trillionaires.html"
+			icon="images/thumbs/trillionaires-thumb.png"
+			anchor="trillionaires" label="The Trillionaires"
+		></ravel-scrapbook>
+		<ravel-scrapbook 
+		    src="scrapbooks/gibbon-shop.html"
+			icon="images/thumbs/gibbon-shop-thumb.png"
+			anchor="gibbon-shop" label="Items From The Gibbon Shop"
+		></ravel-scrapbook>	
+		<ravel-scrapbook 
+		    src="scrapbooks/mzo-reconsidered.html"
+			icon="images/thumbs/mzo-thumb.png"
+			anchor="mzo-reconsidered" label="MZO Reconsidered"
+		></ravel-scrapbook>
+		<ravel-scrapbook 
+		    src="scrapbooks/cgol.html"
+			icon="images/thumbs/cgol-thumb.png"
+			anchor="cgol" label="CGOL"
+		></ravel-scrapbook>
 		<!--Fluxly Arcade-->
-		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/fluxlyarcade.html');"><img class="print-thumb" src="images/thumbs/fluxly-arcade.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="fluxlyarcade"
+			label="" 
+			src="scrapbooks/fluxlyarcade.html"
+			icon="images/thumbs/fluxly-arcade.png"
+	    ></ravel-scrapbook>
 		<!--Sketchbook StyleGAN-->
-		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/sketchbookGAN.html');"><img class="print-thumb" src="images/thumbs/sketchbookGAN.png"/></a>
-	    </div>
-		<!--Bolero StyleGAN-->
-		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/boleroGAN.html');"><img class="print-thumb" src="images/thumbs/boleroGAN.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="sketchbookGAN"
+			label="" 
+			src="scrapbooks/sketchbookGAN.html"
+			icon="images/thumbs/sketchbookGAN.png"
+	    ></ravel-scrapbook>
 		<!--Snoofy-->
-		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/snoofy.html');"><img class="print-thumb" src="images/thumbs/snoofy400.png"/></a>
-	    </div>
+		<!--
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/snoofy.html"
+			icon="images/thumbs/snoofy400.png"
+	    ></ravel-scrapbook>
+		-->
 		<!--Bloopnet-->
-		<div  class="print-container" onclick="onMenuSelect()" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/bloopnet.html');"><img class="print-thumb" src="images/thumbs/bloopnet.png"/></a>
-	    </div>
+		<!--
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/bloopnet.html"
+			icon="images/thumbs/bloopnet.png"
+	    ></ravel-scrapbook>
+		-->
 		<!--Machines of the Mockerspace-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('programs/mokrbot-gen.html');"><img class="print-thumb" src="images/thumbs/mockerspace2.png"/></a>
-	    </div>
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="mokrbot-gen.html"
+			icon="images/thumbs/mockerspace2.png"
+	    ></ravel-scrapbook>
+	    -->
 		<!--Fluxly Boombox-->
-		<!--<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/fluxly-boombox.html');"><img class="print-thumb" src="images/thumbs/fluxlyboombox.png"/></a>
-	    </div>
-			-->
-		<!--Diaglyphs-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('programs/diaglyphs.html');"><img class="print-thumb" src="images/thumbs/diaglyphs.png"/></a>
-	    </div>
-		<!---->
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/fluxly-boombox.html"
+			icon="images/thumbs/fluxlyboombox.png"
+	    ></ravel-scrapbook>
+	    -->
+		<!--P5 Sketch collection-->
+		<!--<ravel-scrapbook 
+			anchor="p5-sketches"
+			label="" 
+			src="p5-sketches.html"
+			icon="images/thumbs/diaglyphs.png"
+	    ></ravel-scrapbook>
+	    -->
 		<!--2019-->
 		<!--orb project-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('http://fluxly.com/orb-project.us');"><img class="print-thumb" src="images/thumbs/orbproject.png"/></a>
-	    </div>
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="http://fluxly.com/orb-project.us"
+			icon="images/thumbs/orbproject.png"
+	    ></ravel-scrapbook>
+	    -->
 		<!--redacted tower-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/redacted-tower.html');"><img class="print-thumb" src="images/thumbs/redactedtower.png"/></a>
-	    </div>
+	    <!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/redacted-tower.html"
+			icon="images/thumbs/redactedtower.png"
+	    ></ravel-scrapbook>
+	    -->
 		<!--unruly-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/unruly-studios.html');"><img class="print-thumb" src="images/thumbs/unrulystudios.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="unruly-studios"
+			label="" 
+			src="scrapbooks/unruly-studios.html"
+			icon="images/thumbs/unrulystudios.png"
+	    ></ravel-scrapbook>
 		<!--patches-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/patches.html');"><img class="print-thumb" src="images/thumbs/patches.jpg"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="patches"
+			label="" 
+			src="scrapbooks/patches.html"
+			icon="images/thumbs/patches.jpg"
+	    ></ravel-scrapbook>
+  
 		<!--Patches-->
 		<!--mark c project
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/markc.html');"><img class="print-thumb" src="images/thumbs/markc.png"/></a>
-	    </div>-->
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/markc.html"
+			icon="images/thumbs/markc.png"
+	    ></ravel-scrapbook>-->
 		<!--thompson folk motif-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('projects/thompson.html');"><img class="print-thumb" src="images/thumbs/thompson.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="thompson"
+			label="" 
+			src="projects/thompson.html"
+			icon="images/thumbs/thompson.png"
+	    ></ravel-scrapbook>
 		<!--2017-->
 		<!--big friend-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/bigfriend.html');"><img class="print-thumb" src="images/thumbs/bigfriend.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="bigfriend"
+			label="" 
+			src="scrapbooks/big-friend.html"
+			icon="images/thumbs/bigfriend.png"
+	    ></ravel-scrapbook>
 		<!--wrnd/soundboxen-->
-		<!--<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/soundboxen.html');"><img class="print-thumb" src="images/thumbs/yakshaver.png"/></a>
-	    </div>
-			-->
-			<div  class="print-container" onclick="onMenuSelect()"> 
-				<a href="javascript:openSummary('projects/benjolin2.html');"><img class="print-thumb" src="images/thumbs/benjolin2.png"/></a>
-		    </div>
+		<!--<ravel-scrapbook 
+			anchor="soundboxen"
+			label="" 
+			src="scrapbooks/soundboxen.html"
+			icon="images/thumbs/yakshaver.png"
+	    ></ravel-scrapbook>
+	    -->
+		<ravel-scrapbook 
+			anchor="benjolin"
+			label="" 
+			src="scrapbooks/benjolin2.html"
+			icon="images/thumbs/benjolin2.png">
+		</ravel-scrapbook>
 		<!--feral vocaloid-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/feral-vocaloid.html');"><img class="print-thumb" src="images/thumbs/feralvocaloid.png"/></a>
-	    </div>
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/feral-vocaloid.html"
+			icon="images/thumbs/feralvocaloid.png"
+	    ></ravel-scrapbook>
+	    -->
 		<!--boxenlights journal-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('programs/boxenlines.html');"><img class="print-thumb" src="images/thumbs/boxenlines.png"/></a>
-	    </div>
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="boxenlines.html"
+			icon="images/thumbs/boxenlines.png"
+	    ></ravel-scrapbook>
+	    -->
 		<!--Electronics project graveyard-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('projects/graveyard/graveyard.html');"><img class="print-thumb" src="images/thumbs/graveyard.png"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="electronics-graveyard"
+			label="" 
+			src="scrapbooks/electronics-graveyard.html"
+			icon="images/thumbs/graveyard.png"
+	    ></ravel-scrapbook>
+  
 		<!--2016-->
 		<!--reverbalizer-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/reverbalizer.html');"><img class="print-thumb" src="images/thumbs/reverbalizer.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="reverbalizer"
+			label="" 
+			src="scrapbooks/reverbalizer.html"
+			icon="images/thumbs/reverbalizer.png"
+	    ></ravel-scrapbook>
 		<!--Oh Eye: Analog Inputs for Raspberry Pi-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/oh-
-			eye.html');"><img class="print-thumb" src="images/thumbs/oheye.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="oh-eye"
+			label="" 
+			src="scrapbooks/oh-eye.html"
+			icon="images/thumbs/oheye.png"
+	    ></ravel-scrapbook>
 		<!--Benjolin-->
-		<!--<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/benjolin.html');"><img class="print-thumb" src="images/thumbs/benjolin.png"/></a>
-	    </div>
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/benjolin.html"
+			icon="images/thumbs/benjolin.png"
+	    ></ravel-scrapbook>
 			-->
-		<!---->
+  
 		<!--2015-->
 		<!--arduino poster-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/arduino-poster.html');"><img class="print-thumb" src="images/thumbs/arduinoposter.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/arduino-poster.html"
+			icon="images/thumbs/arduinoposter.png"
+	    ></ravel-scrapbook>
 		<!--Mondo Brickbridge for LEGO Mindstorms-->
-		<!--<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/brickbridge.html');"><img class="print-thumb" src="images/thumbs/brickbridge.png"/></a>
-	    </div>-->
-		<!---->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/signs.html');"><img class="print-thumb" src="images/thumbs/signs.jpg"/></a>
-	    </div>
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/brickbridge.html"
+			icon="images/thumbs/brickbridge.png"
+	    ></ravel-scrapbook>-->
+  
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/signs.html"
+			icon="images/thumbs/signs.jpg"
+	    ></ravel-scrapbook>
 		<!--2014-->
 		<!--industries/fab lab slides/rif materials-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/labs-workshops.html');"><img class="print-thumb" src="images/thumbs/fablab.jpg"/></a>
-	    </div>
-	    <!--Modern Device-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/modern-device.html');"><img class="print-thumb" src="images/thumbs/moderndevice.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/labs-workshops.html"
+			icon="images/thumbs/fablab.jpg"
+	    ></ravel-scrapbook><!--Modern Device-->
+		<ravel-scrapbook 
+			anchor="modern-device"
+			label="" 
+			src="scrapbooks/modern-device.html"
+			icon="images/thumbs/moderndevice.jpg"
+	    ></ravel-scrapbook>
 		<!--Fab Academy-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/fab-academy.html');"><img class="print-thumb" src="images/thumbs/fabacademy.jpg"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="fab-academy"
+			label="" 
+			src="scrapbooks/fab-academy.html"
+			icon="images/thumbs/fabacademy.jpg"
+	    ></ravel-scrapbook>
+  
 		<!--2013-->
 		<!--Getting Started With Raspberry Pi-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/gsw-raspi.html');"><img class="print-thumb" src="images/thumbs/gsw.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="gsw-raspi"
+			label="" 
+			src="scrapbooks/gsw-raspi.html"
+			icon="images/thumbs/gsw.png"
+	    ></ravel-scrapbook>
 		<!--Laughing Dice-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/laughing-dice.html');"><img class="print-thumb" src="images/thumbs/laughingdice.jpg"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="laughing-dice"
+			label="" 
+			src="scrapbooks/laughing-dice.html"
+			icon="images/thumbs/laughingdice.jpg"
+	    ></ravel-scrapbook>
+  
 		<!--2012-->
 		<!--DR-OM-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/drom.html');"><img class="print-thumb" src="images/thumbs/drom.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="drom"
+			label="" 
+			src="scrapbooks/drom.html"
+			icon="images/thumbs/drom.png"
+	    ></ravel-scrapbook>
 		<!--3D Printer Trading Cards (From the Future!)-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/make-graphics.html');"><img class="print-thumb" src="images/thumbs/3dthumb.jpg"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/make-graphics.html"
+			icon="images/thumbs/3dthumb.jpg"
+	    ></ravel-scrapbook>
+  
 		<!--2011-->
 		<!--Noisemusick, the App-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/noisemusick.html');"><img class="print-thumb" src="images/thumbs/noisemusick.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="noisemusick"
+			label="" 
+			src="scrapbooks/noisemusick.html"
+			icon="images/thumbs/noisemusick.png"
+	    ></ravel-scrapbook>
 		<!--O’Reilly Media-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/oreilly.html');"><img class="print-thumb" src="images/thumbs/oreilly.png"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="oreilly"
+			label="" 
+			src="scrapbooks/oreilly.html"
+			icon="images/thumbs/oreilly.png"
+	    ></ravel-scrapbook>
+  
 		<!--2010-->
 		<!--Fluxamasynth-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/fluxamasynth-shield.html');"><img class="print-thumb" src="images/thumbs/fluxsynth1.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="fluxamasynth-shield"
+			label="" 
+			src="scrapbooks/fluxamasynth-shield.html"
+			icon="images/thumbs/fluxsynth1.jpg"
+	    ></ravel-scrapbook>
 		<!--One Theremin Per Child-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/otpc.html');"><img class="print-thumb" src="images/thumbs/otpc.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="otpc"
+			label="" 
+			src="scrapbooks/otpc.html"
+			icon="images/thumbs/otpc.png"
+	    ></ravel-scrapbook>
+	    <!--piroulette
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/piroulette.html"
+			icon="images/thumbs/piroulette.png"
+	    ></ravel-scrapbook>-->
 		<!--AS220 Labs Graphics-->
 		
-		<!---->
+  
 		<!--2009-->
 		<!--555 Noisemusick Kit-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/noisemusick-kit.html');"><img class="print-thumb" src="images/thumbs/noisemusick2.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="noisemusick-kit"
+			label="" 
+			src="scrapbooks/noisemusick-kit.html"
+			icon="images/thumbs/noisemusick2.jpg"
+	    ></ravel-scrapbook>
 		<!--Hair and Balanced-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/hair-and-balanced.html');"><img class="print-thumb" src="images/thumbs/hairbalanced.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="hair-and-balanced"
+			label="" 
+			src="scrapbooks/hair-and-balanced.html"
+			icon="images/thumbs/hairbalanced.jpg"
+	    ></ravel-scrapbook>
 		<!--drawbot portraits/Drawbot Bézier Helper Tool-->
-		<!--<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/drawbot-portraits.html');"><img class="print-thumb" src="images/thumbs/drawbotbezier.png"/></a>
-	    </div>-->
+		<!--<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/drawbot-portraits.html"
+			icon="images/thumbs/drawbotbezier.png"
+	    ></ravel-scrapbook>-->
 		<!--Fluxamabob Drawbot-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/drawbot.html');"><img class="print-thumb" src="images/thumbs/drawbot.jpg"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="drawbot"
+			label="" 
+			src="scrapbooks/drawbot.html"
+			icon="images/thumbs/drawbot.jpg"
+	    ></ravel-scrapbook>
+		<!--2007-->
+		<ravel-scrapbook 
+			anchor="the-dreyfus"
+			label="" 
+			src="scrapbooks/the-dreyfus.html"
+			icon="images/thumbs/dreyfus-thumb.png"
+	    ></ravel-scrapbook>
+		<!--2005-->
+		<ravel-scrapbook 
+			anchor="as220-empire"
+			label="" 
+			src="scrapbooks/as220-empire.html"
+			icon="images/thumbs/empire-thumb.png"
+	    ></ravel-scrapbook>
 		<!--2003 -->
 		<!--Perl Graphics Programming-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/pgp.html');"><img class="print-thumb" src="images/thumbs/pgp.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="perl-books"
+			label="" 
+			src="scrapbooks/perl-books.html"
+			icon="images/thumbs/pgp.jpg"
+	    ></ravel-scrapbook>
 		<!--Mzo game
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/mzo.html');"><img class="print-thumb" src="images/thumbs/mzo.png"/></a>
-	    </div>-->
-		<!---->
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/mzo.html"
+			icon="images/thumbs/mzo.png"
+	    ></ravel-scrapbook>-->
+
 		<!--2001-->
 		<!--Solo Music-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/solo.html');"><img class="print-thumb" src="images/thumbs/solo.gif"/></a>
-	    </div>
+		<!--
+		<ravel-scrapbook 
+			anchor="" label="The Jills" 
+		></ravel-scrapbook>
+	    -->
+		<!--Solo Music-->
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			src="scrapbooks/solo.html"
+			icon="images/thumbs/solo.gif"
+	    ></ravel-scrapbook>
 		<!--Panic Band-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/panic-band.html');"><img class="print-thumb" src="images/thumbs/hispanic.jpg"/></a>
-	    </div>
-		<!---->
-		<!--1998-->
-		<!--Programming Web Graphics-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/pwg.html');"><img class="print-thumb" src="images/thumbs/pwg.jpg"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor="panic-band"
+			label="" 
+			src="scrapbooks/panic-band.html"
+			icon="images/thumbs/panicband.png"
+	    ></ravel-scrapbook>
+
 		<!--1995-->
 		<!--Amoebic Ensemble-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/amoebic-ensemble.html');"><img class="print-thumb" src="images/thumbs/amoebic.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="amoebic-ensemble" 
+			label="" 
+			src="scrapbooks/amoebic-ensemble.html"
+			icon="images/thumbs/amoebic.png"
+	    ></ravel-scrapbook>
 		<!--The Bolero Club-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openPage('projects/bolero/bolero.html');"><img class="print-thumb" src="images/thumbs/bolero.jpg"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="bolero-club"
+			label="" 
+			src="scrapbooks/bolero/bolero.html"
+			icon="images/thumbs/bolero.jpg"
+	    ></ravel-scrapbook>
 		<!--The AS220 Complex Magazine-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/complex-magazine.html');"><img class="print-thumb" src="images/thumbs/complex.png"/></a>
-	    </div>
+		<ravel-scrapbook 
+			anchor="complex-magazine"
+			label="" 
+			src="scrapbooks/complex-magazine.html"
+			icon="images/thumbs/complex.png"
+	    ></ravel-scrapbook>
 		<!--frodus-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="javascript:openSummary('projects/frodus/frodus.html');"><img class="print-thumb" src="images/thumbs/frodus.png"/></a>
-	    </div>
-	</div>
-	<div class="row-container">
-		<!---->
+		<ravel-scrapbook 
+			anchor="frodus"
+			label="" 
+			src="scrapbooks/frodus/frodus.html"
+			icon="images/thumbs/frodus.png"
+	    ></ravel-scrapbook>
+
 		<!--Github-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="https://github.com/fluxly"><img class="print-thumb" src="projects/images/github.png"/></a>
-	    </div>
-		<!---->
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+			external-link="https://github.com/fluxly"
+			icon="images/github.png"
+	    ></ravel-scrapbook>
+  
 		<!--Instagram-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="https://instagram.com/fluxlyandfrob"><img class="print-thumb" src="projects/images/instagram.png"/></a>
-	    </div>
-		<!---->
-		<!--Twitter-->
-		<div  class="print-container" onclick="onMenuSelect()"> 
-			<a href="https://twitter.com/fluxly"><img class="print-thumb" src="projects/images/twitter.png"/></a>
-	    </div>
-		<!---->
-		<!--Twitter-->
-		<div  class="print-container-blank" > 
-			<img class="print-thumb" src="projects/images/blank.png"/>
-	    </div>
-		<!---->
-    </div>
-</center>
+		<ravel-scrapbook 
+			anchor=""
+			label="" 
+		    external-link="https://instagram.com/fluxlyandfrob"
+			icon="images/instagram.png"
+	    ></ravel-scrapbook>
+	</div>
+	</div>
 </body>
 </html>

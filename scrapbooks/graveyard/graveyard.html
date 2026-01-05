@@ -1,0 +1,295 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../../fonts/Serif/cmun-serif.css">
+	<link rel="stylesheet" href="../../styles.css">
+	<link rel="stylesheet" href="../../fonts/silkscreen.css">
+	
+	<style>
+		html {
+			background-color:#000000;
+		}
+		#page-wrapper-1 {
+			height:100%;
+			width:100%;
+			position:fixed;
+			top:0px;
+			left:0px;
+			opacity:1;
+		}
+		
+		#row-container-wrapper {
+		  position: relative;
+		  width:508px;
+		  margin: 30px 30px 30px 44%;
+		  padding: 0px;
+		}
+		.row-container {
+		  display: grid;
+		  grid-template:  auto / auto auto auto auto;
+		  grid-gap: 8px;
+		  padding: 0px;
+		}
+		.print-container {
+			padding:-20px -20px -20px -20px!important;
+			
+			border-radius:20px;
+		}
+		.print-container img {
+			width:125px;
+			height:125px;
+			border:10px solid #ffffff33;
+			border-radius:20px;
+			padding:-40px -40px -40px -40px!important;
+			
+		}
+		.year-label {
+			font-size:72pt;
+			padding:30px;
+		}
+		.print-thumb {
+			width:125px;
+		}
+		#print-full img {
+			width:500px;
+			
+		}
+		#print-full-wrapper {
+
+		}
+		#print-full-container {
+			position:fixed;
+			right:54%;
+			top:45px;
+			overflow:hidden;
+			width:500px;
+			min-height:500px;
+			margin-right:30px;
+			
+		}
+		#print-full {
+			position:fixed;
+			right:54%;
+			top:35px;
+			overflow:hidden;
+			width:500px;
+			min-height:500px;
+			margin-right:30px;
+			
+			border-radius:20px;
+    	  -webkit-transition: opacity 1s ease-out;
+    	  -moz-transition: opacity 1s ease-out;
+    	  -o-transition: opacity 1s ease-out;
+    	  transition: opacity 1s ease-out;
+		border:20px solid #333333;
+		border-radius:20px;
+		padding:-40px -40px -40px -40px!important;
+		}
+		#info-container {
+			width:500px;
+			border-radius:20px;
+			background-color:#ffffff;
+			padding:30px 45px 0px 45px;
+		}
+		html {
+			touch-action: none!important;
+		}
+		.selected {
+			-webkit-box-shadow:  0px 0px 20px 5px rgba(255,255,255,1);
+			-moz-box-shadow:  0px 0px 20px 5px rgba(255,255,255,1);
+			box-shadow: 0px 0px 20px 5px rgba(255,255,255,1);
+		}
+        #summary-container {
+        	position:relative;
+			width:450px;
+			min-height:140px;
+			background-color:#ffffff;
+			border:6px  solid #333333;
+			border-radius:12px;
+			margin:460px 25px 0px 0px;
+			padding:0px 0px 0px 5px;
+        }
+		#summary {
+			border:none;
+            width:100%;
+			height:150px;
+			margin:0px;
+			overflow-wrap: break-word;
+		}
+	</style>
+	
+<script>
+	
+	function loadImage(n) {
+		document.getElementById("print-full").innerHTML = "<img src='images/thumb500/thumb500-" + n + ".jpeg'/>";	
+		document.getElementById("summary").contentWindow.showCaption(n);
+	}
+	
+	function loadImageB(n) {
+		document.getElementById("print-full").innerHTML = "<img src='images/thumb500/thumb500-B" + n + ".jpg'/>";	
+		document.getElementById("summary").contentWindow.showCaption(43 + n);
+	}
+	
+	function loadImageB2(n) {
+		document.getElementById("print-full").innerHTML = "<img src='images/thumb500/thumb500-B" + n + ".png'/>";	
+		document.getElementById("summary").contentWindow.showCaption(n);
+	}
+	
+	function loadPng(n) {
+		document.getElementById("print-full").innerHTML = "<img src='" + n + "'/>";	
+	}
+	
+	function onMenuSelect() {
+		var menuItems = document.getElementsByClassName('selected');
+		for (var i = 0; i < menuItems.length; ++i) {
+		    menuItems[i].classList.remove('selected');
+		}
+        window.event.target.className += " selected";
+	}
+	
+</script>
+	
+</head>
+<body onload="javascript:loadImage(0);">
+<div id="page-wrapper-0">
+
+<div id="print-full-container">
+<div id="print-full"></div>
+<div id="summary-container"><iframe id="summary" src="graveyard-captions.html"></iframe></div>
+</div>
+
+<div id="row-container-wrapper">
+	<div id="info-container">
+		<center><div class="date-header">2010-</div>
+		<div class="header">Electronics Projects Graveyard</div></center> 
+		<div class="description">A collection of electronics projects since 2008 or so. A resting place for experiments, failures, Todos, and one-off or bespoke niche projects. Documenting them here for myself and to get them out of the box.</div>
+
+	<center><div style="position:relative; margin:40px 0px 30px 0px; width:250px;" width="200px;"class="date-header selected">THE COLLECTION</div></center>
+</div>
+
+<center>
+<div class="row-container">	
+	<div id="thumb-39" class="print-container"  onclick="onMenuSelect()">
+	<a href="javascript:loadImage(39);"><img class="print-thumb" src="images/thumb125/thumb125-39.jpeg"/></a></div>
+	<div id="thumb-40" class="print-container"  onclick="onMenuSelect()">
+	<a href="javascript:loadImage(40);"><img class="print-thumb" src="images/thumb125/thumb125-40.jpeg"/></a></div>
+	<div id="thumb-41" class="print-container"  onclick="onMenuSelect()">
+	<a href="javascript:loadImage(41);"><img class="print-thumb" src="images/thumb125/thumb125-41.jpeg"/></a></div>
+<div id="thumb-0" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(0);"><img class="print-thumb" src="images/thumb125/thumb125-0.jpeg"/></a></div>
+<div id="thumb-1" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(1);"><img class="print-thumb" src="images/thumb125/thumb125-1.jpeg"/></a></div>
+<div id="thumb-2" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(2);"><img class="print-thumb" src="images/thumb125/thumb125-2.jpeg"/></a></div>
+<div id="thumb-3" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(3);"><img class="print-thumb" src="images/thumb125/thumb125-3.jpeg"/></a></div>
+<div id="thumb-4" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(4);"><img class="print-thumb" src="images/thumb125/thumb125-4.jpeg"/></a></div>
+<div id="thumb-5" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(5);"><img class="print-thumb" src="images/thumb125/thumb125-5.jpeg"/></a></div>
+<div id="thumb-6" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(6);"><img class="print-thumb" src="images/thumb125/thumb125-6.jpeg"/></a></div>
+<div id="thumb-7" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(7);"><img class="print-thumb" src="images/thumb125/thumb125-7.jpeg"/></a></div>
+<div id="thumb-8" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(8);"><img class="print-thumb" src="images/thumb125/thumb125-8.jpeg"/></a></div>
+<div id="thumb-9" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(9);"><img class="print-thumb" src="images/thumb125/thumb125-9.jpeg"/></a></div>
+<div id="thumb-10" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(10);"><img class="print-thumb" src="images/thumb125/thumb125-10.jpeg"/></a></div>
+<div id="thumb-11" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(11);"><img class="print-thumb" src="images/thumb125/thumb125-11.jpeg"/></a></div>
+<div id="thumb-12" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(12);"><img class="print-thumb" src="images/thumb125/thumb125-12.jpeg"/></a></div>
+<div id="thumb-13" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(13);"><img class="print-thumb" src="images/thumb125/thumb125-13.jpeg"/></a></div>
+<div id="thumb-14" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(14);"><img class="print-thumb" src="images/thumb125/thumb125-14.jpeg"/></a></div>
+<div id="thumb-15" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(15);"><img class="print-thumb" src="images/thumb125/thumb125-15.jpeg"/></a></div>
+<div id="thumb-16" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(16);"><img class="print-thumb" src="images/thumb125/thumb125-16.jpeg"/></a></div>
+<div id="thumb-17" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(17);"><img class="print-thumb" src="images/thumb125/thumb125-17.jpeg"/></a></div>
+<div id="thumb-19" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(19);"><img class="print-thumb" src="images/thumb125/thumb125-19.jpeg"/></a></div>
+<div id="thumb-20" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(20);"><img class="print-thumb" src="images/thumb125/thumb125-20.jpeg"/></a></div>
+<div id="thumb-21" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(21);"><img class="print-thumb" src="images/thumb125/thumb125-21.jpeg"/></a></div>
+<div id="thumb-22" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(22);"><img class="print-thumb" src="images/thumb125/thumb125-22.jpeg"/></a></div>
+<div id="thumb-23" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(23);"><img class="print-thumb" src="images/thumb125/thumb125-23.jpeg"/></a></div>
+<div id="thumb-25" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(25);"><img class="print-thumb" src="images/thumb125/thumb125-25.jpeg"/></a></div>
+<div id="thumb-26" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(26);"><img class="print-thumb" src="images/thumb125/thumb125-26.jpeg"/></a></div>
+<div id="thumb-27" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(27);"><img class="print-thumb" src="images/thumb125/thumb125-27.jpeg"/></a></div>
+<div id="thumb-28" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(28);"><img class="print-thumb" src="images/thumb125/thumb125-28.jpeg"/></a></div>
+<div id="thumb-29" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(29);"><img class="print-thumb" src="images/thumb125/thumb125-29.jpeg"/></a></div>
+<div id="thumb-31" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(31);"><img class="print-thumb" src="images/thumb125/thumb125-31.jpeg"/></a></div>
+<div id="thumb-32" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(32);"><img class="print-thumb" src="images/thumb125/thumb125-32.jpeg"/></a></div>
+<div id="thumb-36" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(36);"><img class="print-thumb" src="images/thumb125/thumb125-36.jpeg"/></a></div>
+<div id="thumb-33" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(33);"><img class="print-thumb" src="images/thumb125/thumb125-33.jpeg"/></a></div>
+<div id="thumb-37" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(37);"><img class="print-thumb" src="images/thumb125/thumb125-37.jpeg"/></a></div>
+<div id="thumb-38" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(38);"><img class="print-thumb" src="images/thumb125/thumb125-38.jpeg"/></a></div>
+<div id="thumb-42" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImage(42);"><img class="print-thumb" src="images/thumb125/thumb125-42.jpeg"/></a></div>
+<div id="thumb-B0" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(0);"><img class="print-thumb" src="images/thumb125/thumb125-B0.jpg"/></a></div>
+<div id="thumb-B1" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(1);"><img class="print-thumb" src="images/thumb125/thumb125-B1.jpg"/></a></div>
+<div id="thumb-B2" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(2);"><img class="print-thumb" src="images/thumb125/thumb125-B2.jpg"/></a></div>
+<div id="thumb-B3" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(3);"><img class="print-thumb" src="images/thumb125/thumb125-B3.jpg"/></a></div>
+<div id="thumb-B4" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(4);"><img class="print-thumb" src="images/thumb125/thumb125-B4.jpg"/></a></div>
+<div id="thumb-B5" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(5);"><img class="print-thumb" src="images/thumb125/thumb125-B5.jpg"/></a></div>
+<div id="thumb-B6" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(6);"><img class="print-thumb" src="images/thumb125/thumb125-B6.jpg"/></a></div>
+<div id="thumb-B7" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(7);"><img class="print-thumb" src="images/thumb125/thumb125-B7.jpg"/></a></div>
+<div id="thumb-B8" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(8);"><img class="print-thumb" src="images/thumb125/thumb125-B8.jpg"/></a></div>
+<div id="thumb-B9" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(9);"><img class="print-thumb" src="images/thumb125/thumb125-B9.jpg"/></a></div>
+<div id="thumb-B10" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(10);"><img class="print-thumb" src="images/thumb125/thumb125-B10.jpg"/></a></div>
+<div id="thumb-B12" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(12);"><img class="print-thumb" src="images/thumb125/thumb125-B12.jpg"/></a></div>
+<div id="thumb-201" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(201);"><img class="print-thumb" src="images/thumb125/thumb125-B201.png"/></a></div>
+<div id="thumb-202" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(202);"><img class="print-thumb" src="images/thumb125/thumb125-B202.png"/></a></div>
+<div id="thumb-203" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(203);"><img class="print-thumb" src="images/thumb125/thumb125-B203.png"/></a></div>
+<div id="thumb-204" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(204);"><img class="print-thumb" src="images/thumb125/thumb125-B204.png"/></a></div>
+<div id="thumb-206" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(206);"><img class="print-thumb" src="images/thumb125/thumb125-B206.png"/></a></div>
+<div id="thumb-208" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(208);"><img class="print-thumb" src="images/thumb125/thumb125-B208.png"/></a></div>
+<div id="thumb-209" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(209);"><img class="print-thumb" src="images/thumb125/thumb125-B209.jpg"/></a></div>
+<div id="thumb-210" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB(210);"><img class="print-thumb" src="images/thumb125/thumb125-B210.jpg"/></a></div>
+<div id="thumb-211" class="print-container"  onclick="onMenuSelect()">
+<a href="javascript:loadImageB2(211);"><img class="print-thumb" src="images/thumb125/thumb125-B211.png"/></a></div>
+
+</div>
+</center>
+</div>
+</div>
+</body>
+</html>

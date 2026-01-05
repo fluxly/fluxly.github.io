@@ -1,0 +1,163 @@
+<html>
+<head>
+	<style>
+		a {
+			color:#ffffff;
+			text-decoration:none;
+		}
+		body {
+			padding:0px;
+			margin:0px;
+			background-color:#000000;
+			font-family:Futura;
+			font-weight:500;
+		}
+		#menu-section {
+			width:100%;
+			height:100%;
+			padding-right:200px;
+		}
+		#reference {
+			position:absolute;
+			width:2px;
+			height:2px;
+			background-color:#ff0000;
+			left:401px;
+			top:273px;
+		}
+        #game-frame {	
+			width:100%;
+			height:100%;
+			display:none;
+			z-index:10000;
+			overflow:hidden;
+        }
+		#close-button {
+			display:none;
+			position:fixed;
+			width:60px;
+			height:60px;
+			top:10px;
+			right:10px;
+			opacity:0.7;
+		}
+		.game-title {
+			margin-top:-100px;
+			text-align:center;
+		    
+			font-size:24pt;
+			color:#ffffff;
+		}
+		@media only screen and (max-height: 650px) {
+			.game-title {
+				margin-top:-60px;
+				text-align:center;
+			    font-size:16pt;
+				color:#ffffff;
+			}
+			.menu-item-wrapper {
+				margin-top:-50px;
+			}
+		}
+		.fade-out {
+			-webkit-animation: fade-out 1s ease-out both;
+			        animation: fade-out 1s ease-out both;
+		}
+		@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+	</style>
+	
+	<script>
+		function getRandomInt(min, max) {
+		    min = Math.ceil(min);
+		    max = Math.floor(max);
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		function openGame(n) {
+			console.log("OPEN");
+			document.getElementById("menu-section").style["display"] = "none";
+			document.getElementById("game-frame").src="game" + n + ".html";
+		    document.getElementById("game-frame").style["display"] = "block";
+			document.getElementById("close-button").style["display"] = "block";
+			
+		}
+
+		function exitToMenu() {
+			parent.contentDocument.getElementById("menu-section").style["display"] = "block";
+			parent.contentDocument.getElementById("game-frame").style["display"] = "none";
+			document.getElementById("close-button").style["display"] = "none";
+			document.getElementById('loading').style["display"] = "none";
+		}
+		var clock = setInterval(toggleBackgroundState, 31000);
+		var state = 0;
+		function toggleBackgroundState() {
+			
+			if (state == 0) {
+				
+				document.getElementById('page-wrapper-2').style.backgroundImage = "url('images/_" + getRandomInt(0, 10) + ".png')";
+				document.getElementById('page-wrapper-1').style.opacity = 0;
+	            document.getElementById('page-wrapper-2').style.opacity = 1;
+			    state = 1;
+			} else {
+				document.getElementById('page-wrapper-1').style.backgroundImage = "url('images/_" + getRandomInt(0, 10) + ".png')";
+				document.getElementById('page-wrapper-1').style.opacity = 1;
+	            document.getElementById('page-wrapper-2').style.opacity = 0;
+			    state = 0;
+			}
+		}
+
+		async function hideLoading() {
+			document.getElementById('loading').classList.add("fade-out");
+			setTimeout(function() { document.getElementById('loading').style["display"] = "none"; }, 1000)
+			
+		}
+	</script>
+
+	<link rel="stylesheet" href="menu-scene-styles.css" />
+	
+</head>
+<body onLoad="javascript:toggleBackgroundState();">
+    
+	<div id="page-wrapper-1">
+	</div>
+	<div id="page-wrapper-2">
+	</div>
+	<div id="page-wrapper-0">
+	
+	<a href=""><img id="close-button" class="button" src="images/close.png"></a>
+	<div id="menu-section">
+        <div  class="menu-item-wrapper" id="menu-item-wrapper-0">
+		   <a  onclick="openGame(0)">
+	         <img  class="menu-item-image" id="menu-item-image-0" src="images/menu0.png">
+	       </a><BR/><div class="game-title">1. Random Life</div>
+        </div>
+		
+       <div class="menu-item-wrapper" id="menu-item-wrapper-1">
+	   <a  onclick="openGame(1)">
+         <img  class="menu-item-image" id="menu-item-image-1" src="images/menu1.png">
+       </a>
+	   <BR/><div class="game-title">2. Draw Life</div>
+       </div>
+	</div>
+    <iframe id="game-frame"></iframe>
+	<a href="javascript:hideLoading()"><div id="loading" class="" style="background-color:#000000;color:#ffffff;width:100%; height:100%;position:fixed;top:0px; left:0px;"><div style="background-color:#000000;color:#ffffff;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);" ><center><img id="logo" width="200px;" src="images/1024.png"/><br/><br/>CGOL<br/><br/>Chase's<br/>Game of Life<br/><br/><br/><br/><a target="new" href="appstore"><img width="200px" src="images/appstore.svg"/></a></center></div>
+</div></div></a>
+</body>
+	<script>
+		// Any special setup code can go here
+	</script>
+</html>

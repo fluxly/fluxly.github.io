@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="19.742495mm"
+   height="19.741852mm"
+   viewBox="0 0 19.742495 19.741852"
+   version="1.1"
+   id="led"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-16.247012,-38.049292)">
+    <path
+       id="rect1"
+       style="opacity:1;fill:#000000;stroke:none;stroke-width:1.64789;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 21.121161,38.049293 v 2.277435 h -2.547148 v 2.596716 h -2.327001 v 9.993552 h 2.327001 v 2.59607 h 2.547148 v 2.278079 h 9.993552 v -2.278079 h 2.547793 v -2.59607 h 2.327001 v -9.993552 h -2.327001 v -2.596716 h -2.547793 v -2.277435 z"
+       inkscape:export-filename="led.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <circle
+       style="fill:#00cc00;stroke:none;stroke-width:0.393338;stroke-linecap:round;stroke-linejoin:round"
+       id="led-background"
+       cx="26.118259"
+       cy="47.920219"
+       r="6.6145835" />
+    <path
+       id="rect3"
+       style="opacity:0.488889;fill:#000000;stroke:none;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 19.955888,50.278068 a 6.6145835,6.6145835 0 0 0 6.162414,4.256588 6.6145835,6.6145835 0 0 0 6.161898,-4.256588 z"
+       inkscape:export-filename="led.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

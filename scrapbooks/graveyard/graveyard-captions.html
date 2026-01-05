@@ -1,0 +1,340 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../../fonts/Serif/cmun-serif.css">
+	<link rel="stylesheet" href="../../styles.css">
+	<link rel="stylesheet" href="../../fonts/silkscreen.css">
+<style>
+	body {
+        padding:0px 0px 0px 0px;
+		color:#000000;
+	}
+	.caption-title {
+		
+	}
+</style>
+<script>
+	function showCaption(n) {
+		console.log(n);
+	   var captions = document.getElementsByClassName("text-caption");
+	   console.log(captions.length);
+	   for (i = 0; i < captions.length; i++) {
+	        captions[i].style.display = "none";
+	   }
+		document.getElementById(n).style.display = "block";
+	}
+</script>
+</head>
+<body>
+<div id="0" class="text-caption">
+	<center><div class="caption-title">Shempscape Contact Mic Preamp</div></center>
+	<div class="caption-body">A simple MOSFET-based circuit for impedence matching of piezo contact mics. Shempscape brand was intended as an umbrella for audio knick knacks and has recently been used in the Cryptozoologic app for the Shempscape Bytebeat Shufflebox synth.</div>
+</div>
+<div id="1" class="text-caption">
+	<center><div class="caption-title">Drawbot Controller</div></center>
+	<div class="caption-body">This is an Atmega-based 2-axis drawbot controller. Two Allegro stepper motor controllers with enable switches on the side. It can be used standalone or as a peripheral shield on a Raspberry Pi. It didn't make sense as a product but has been handy for one-off projects. </div>
+</div>
+<div id="2" class="text-caption">
+	<center><div class="caption-title">SMT Trippy Waves Clone</div></center>
+	<div class="caption-body">This is an Attiny-based version of Mitch Altman's Trippy Waves kit. The RGB LED goes through a pre-programmed sequence. There's an IR emitter and detector pointing up so when you wave your hand over the board it resets. USB header for power only. </div>
+</div>
+<div id="3" class="text-caption">
+	<center><div class="caption-title">Gesture Sensor Prototype</div></center>
+	<div class="caption-body">A breakout board for Microchip's MGC3030 gesture sensor (forgot to clean the flux from this one). This required a six inch diamneter sensing pad to be attached. I won't tell you the working title because I might use it on something else.</div>
+</div>
+<div id="4" class="text-caption">
+	<center><div class="caption-title">Bytebeat Shufflebox</div></center>
+	<div class="caption-body">Basically an Arduino with an audio jack. This is a variation on the Byteseeker kit and looks like it has 5 button inputs and at least one analog in. The corners are snap fit connectors that fit in the LEGO technics system.</div>
+</div>
+
+<div id="5" class="text-caption">
+	<center><div class="caption-title">Pot Swappers</div></center>
+	<div class="caption-body">A lot of the Modern Device microcontroller boards had a header for the analog pins to make it easier to use with breakout boards, since all analog sensing circuits also need power and ground. The header was compatible with servo cables that had a signal/power/ground pinout. The pot swapper remaps your potentiometer from ground/signal/power so it can be used with a servo-style cable (and also provides some LEGO technix-compatible holes).</div>
+</div>
+<div id="6" class="text-caption">
+	<center><div class="caption-title">Analog input breakout</div></center>
+	<div class="caption-body">I can't remember what this was for, but was probably for a bunch of potentiometer inputs. This board is made fab lab-style, milled on the Roland Modela, probably during Fab Academy.</div>
+</div>
+<div id="7" class="text-caption">
+	<center><div class="caption-title">Electret mic amp</div></center>
+	<div class="caption-body">This was a Fab Academy project, an elecret mic amp. This was a "Mondo" board, which came from "hello world" in Esperanto. It looks like the Mondo boards had a snowcone-style logo at the time as well.</div>
+</div>
+
+<div id="8" class="text-caption">
+	<center><div class="caption-title">Shempscape Mixer</div></center>
+	<div class="caption-body">Everyone uses those $90 Behringer mixers in art projects so the idea here was to make a simple and cheap 4 channel mixer. </div>
+</div>
+
+<div id="9" class="text-caption">
+	<center><div class="caption-title">Noisemusick Kit</div></center>
+	<div class="caption-body">The software version lives on but the original Noisemusick kit has been mothballed. The original kit was designed around two IR emitters that were wired backwards, so they leaked and acted as crude sensors. In recent years I've been unable to find IR emitters that are leaky enough; definitely time for a redesign!</div>
+</div>
+
+<div id="10" class="text-caption">
+	<center><div class="caption-title">Oh Eye With Audio Jack</div></center>
+	<div class="caption-body">This was a version of the Oh Eye board that tried to fix a problem with the Raspberry Pi's onboard analog audio output, which was very noisy. This provided an alternative jack from the outputs on the Pi's header pins, but required a driver update that ended up not working with the Pure Data patches that I was working on at the time.</div>
+</div>
+
+<div id="11" class="text-caption">
+	<center><div class="caption-title">Modkit Motor Driver</div></center>
+	<div class="caption-body">I think this was the first board with surface mount components I ever designed, hired by Ed Baafi for a Modkit prototype for a dual motor controller. In those days I was still stuck in the school of thought that you might swap out your H-bridge chips if you burned them out. I also forgot to do the Modkit logo as a bitmap of the actual logo. Sparkfun ended up doing this board in a more sensible way.</div>
+</div>
+
+<div id="12" class="text-caption">
+	<center><div class="caption-title">Reverbalizer Proto</div></center>
+	<div class="caption-body">This is the first working prototype of the Reverbalizer. I like how this shows you can use the fab lab to adapt a chip like the Spin FV-1 to fit a traditional breadboard.</div>
+</div>
+
+<div id="13" class="text-caption">
+	<center><div class="caption-title">Fluxamachine</div></center>
+	<div class="caption-body">This was just an expansion of the drawbot controller from 2 to 3 stepper drivers. Also has an ATX header for power.</div>
+</div>
+
+<div id="14" class="text-caption">
+	<center><div class="caption-title">RBBB for Raspberry Pi</div></center>
+	<div class="caption-body">One of Modern Device's first products was the $11 Really Bare Bones Board, an Arduino variant with the bare minimum of parts needed for a working project. This puts the RBBB on a Raspberry Pi shield. There's a prototyping section under the black breadboard, and this has logic level shifters so it'll work with 5V logic.</div>
+</div>
+<div id="15" class="text-caption">
+	<center><div class="caption-title">ESP32 prototype</div></center>
+	<div class="caption-body">Getting an ESP32 module on a breadboard with a milled breakout board and some blue wire.</div>
+</div>
+<div id="16" class="text-caption">
+	<center><div class="caption-title">Fluxamaboard</div></center>
+	<div class="caption-body">In 2010 we were getting Sanguino boards from Zach Hoeken at the Rep Rap Foundation and packaging them as kits. The Sanguino uses the Atmega644 so has twice as much memory as the bare bones Arduino (and more pins). The Fluxamaboard is just a surface mount module of the Sanguino kit.</div>
+
+		
+		</div>
+<div id="17" class="text-caption">
+			<center><div class="caption-title">Byteseeker Jr.</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="19" class="text-caption">
+			<center><div class="caption-title">Frob32</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="20" class="text-caption">
+				<center><div class="caption-title">DIY Cellphone</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="21" class="text-caption">
+			<center><div class="caption-title">DIY Cellphone</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="22" class="text-caption">
+		<center><div class="caption-title">Weird Appliance Shield</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="23" class="text-caption">
+			<center><div class="caption-title">DIY Cellphone</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="24" class="text-caption">
+				<center><div class="caption-title">Reverbalizer</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="25" class="text-caption">
+			<center><div class="caption-title">Mondo FabISP</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="26" class="text-caption">
+		<center><div class="caption-title">Noisemusick Eurorack Prototype</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="27" class="text-caption">
+			<center><div class="caption-title">Tiny Terminal</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="28" class="text-caption">
+				<center><div class="caption-title">Tiny Terminal</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="29" class="text-caption">
+			<center><div class="caption-title">Yak Shaver</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="30" class="text-caption">
+		<center><div class="caption-title">Oh Eye Tester Jig</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="31" class="text-caption">
+			<center><div class="caption-title">Bolero Box</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="32" class="text-caption">
+				<center><div class="caption-title">Fluxamabob Pyramid</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="33" class="text-caption">
+			<center><div class="caption-title">SMT RBBB</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="34" class="text-caption">
+		<center><div class="caption-title"></div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="35" class="text-caption">
+			<center><div class="caption-title"></div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="36" class="text-caption">
+				<center><div class="caption-title">Fluxamabob Pyramid</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="37" class="text-caption">
+			<center><div class="caption-title">Fluxamaboard 2</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="38" class="text-caption">
+		<center><div class="caption-title">Fabian</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="39" class="text-caption">
+			<center><div class="caption-title">STM32 Eurorack Modular Module</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="40" class="text-caption">
+				<center><div class="caption-title">Single Stepper</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="41" class="text-caption">
+			<center><div class="caption-title">Bloackboxen</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="42" class="text-caption">
+		<center><div class="caption-title">Fluxamasynth Workshop Jig</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="43" class="text-caption">
+		<center><div class="caption-title">MOTE display</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="44" class="text-caption">
+			<center><div class="caption-title">MOTE display</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="45" class="text-caption">
+				<center><div class="caption-title">MOTE display</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="46" class="text-caption">
+			<center><div class="caption-title">MOTE display</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="47" class="text-caption">
+		<center><div class="caption-title">MOTE display</div></center>
+		<div class="caption-body">...</div></div>
+<div id="38" class="text-caption">
+		<center><div class="caption-title">MOTE display</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="48" class="text-caption">
+			<center><div class="caption-title">MOTE display</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="49" class="text-caption">
+				<center><div class="caption-title">MOTE display</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="50" class="text-caption">
+			<center><div class="caption-title">Shempscape Bytebeat Shufflebox</div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="51" class="text-caption">
+		<center><div class="caption-title">In C</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="52" class="text-caption">
+		<center><div class="caption-title">Reverbalizer Tester Jig</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="53" class="text-caption">
+			<center><div class="caption-title">Oh Eye Tester Jig</div></center>
+			<div class="caption-body">...</div>
+			
+		</div>
+<div id="53" class="text-caption">
+				<center><div class="caption-title">Title</div></center>
+				<div class="caption-body">...</div>
+		</div>
+<div id="54" class="text-caption">
+			<center><div class="caption-title"></div></center>
+			<div class="caption-body">...</div>
+	
+		</div>
+<div id="200" class="text-caption">
+		<center><div class="caption-title">Physical Fluxly Prototype</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="201" class="text-caption">
+		<center><div class="caption-title">Brickbridge for LEGO Mindstorms</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="202" class="text-caption">
+		<center><div class="caption-title">Brickbridge Logo</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="203" class="text-caption">
+		<center><div class="caption-title">Brickbridge Connect</div></center>
+		<div class="caption-body">...</div>
+		
+		</div>
+<div id="204" class="text-caption">
+		<center><div class="caption-title">Brickbridge Code</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="205" class="text-caption">
+		<center><div class="caption-title">Title</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="206" class="text-caption">
+		<center><div class="caption-title">Yak Shaver</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="207" class="text-caption">
+		<center><div class="caption-title">Title</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="208" class="text-caption">
+		<center><div class="caption-title">Unicorn Uninary Tract</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="252" class="text-caption">
+		<center><div class="caption-title">Fluxamabob Audio Module</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="253" class="text-caption">
+		<center><div class="caption-title">Nessie</div></center>
+		<div class="caption-body">...</div>
+		</div>
+<div id="211" class="text-caption">
+		<center><div class="caption-title">FabISP</div></center>
+		<div class="caption-body">...</div>
+</div>
+</body>
+</html>

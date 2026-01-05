@@ -1,0 +1,519 @@
+<div class="featured-image-wrapper">
+    <img class="featured-image medium-img" src="images/10_hairandbalanced2.jpg"/>
+</div>
+<div class="date-header">2008</div>
+
+<h1>Hair and Balanced TV Filter</h1>
+
+<p>
+The Hair and Balanced TV Filter taps into the composite video input to your TV, detects whether 
+		you are watching talking head pundits or newscasters, then draws moustaches on the faces on the screen. 
+		The TV filter is a new kind of hardware shield that helps users take control of their screen. 
+		This project is based on the Parallax Propeller processor.
+</p>
+<p>&nbsp</p>
+<img class="featured-image" src="images/10_hairandbalanced.jpg"/>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--
+<textarea row="30" cols="60">
+	''********************************
+''*  Fox Filter                  *
+''*  (C) 2008 AS220 Labs         *
+''*  All code released under GPL *
+''********************************
+
+CON
+      
+  _clkmode = xtal1 + pll16x
+  _xinfreq = 5_000_000
+  
+VAR
+  long  x1
+  long  y1
+  long  x2
+  long  y2
+  long  x3
+  long  y3
+  
+OBJ
+
+  clampdriver    : "ClampDriver"
+  clampdriver2    : "ClampDriver"
+  clampdriver3    : "ClampDriver"
+  
+PUB Main
+  x1:=100
+  y1:=100
+  x2:=100
+  y2:=100
+  x3:=10
+  y3:=100
+  
+  clampdriver.start(100,100)
+  clampdriver2.start(50,100)
+  clampdriver3.start(50,100)
+  
+  repeat
+     waitpeq(%0000, %1000, 0)
+     x1 := x1 + 1
+     if x1>196
+         x1:=0
+     y1 := y1 + 1
+     if y1>260
+         y1:=0
+     clampdriver.setCoord(x1,y1)
+     x2 := x2 - 1
+     if x2==0
+         x2:=196
+     y2 := y2 - 1
+     if y2==0
+        y2:=260
+     clampdriver2.setCoord(x2,y2)
+     x3 := x3 - 1
+     if x3==0
+         x3:=196
+     y3 := y3 + 1
+     if y3>260
+         y3:=0
+     clampdriver3.setCoord(x3,y3)
+
+
+'**********************************
+'*    Frame Grab.spin             *
+'**********************************
+
+CON
+
+  _clkmode = xtal1 + pll16x
+  _xinfreq = 5_000_000
+
+VAR
+  long  xpos[3]
+  long  ypos[3]
+  long screen[1600]           ' 6 longs per line * 262 lines
+
+OBJ
+
+  clampdriver    : "ClampDriver"
+  clampdriver2    : "ClampDriver"
+  clampdriver3    : "ClampDriver"
+
+PUB Main
+
+  cognew(@framegrab,@xpos)
+
+  xpos:=100
+  ypos:=100
+  xpos[1]:=50
+  ypos[1]:=100
+  xpos[2]:=10
+  ypos[2]:=100
+    
+  clampdriver.start(100,100,2)
+  clampdriver2.start(50,100,1)
+  clampdriver3.start(50,100,2)
+
+  repeat
+     waitcnt(600_000+cnt)
+     clampdriver.setCoord(xpos[0],ypos[0])
+     clampdriver2.setCoord(xpos[1],ypos[1])
+     clampdriver3.setCoord(xpos[2],ypos[2])   
+  
+DAT
+
+'***********************************
+'* Assembly language frame grabber *
+'***********************************
+
+                        org     0
+
+framegrab               mov tmp, par
+                        mov xaddr, tmp
+                        add tmp, #12
+                        mov yaddr, tmp
+                        add tmp, #12
+                        mov screenaddr, tmp
+                        
+                        mov dira, videoOut
+                        ANDN dira, compSync   ' Make an Input
+                        ANDN dira, evenOdd    ' Make an Input
+                        ANDN dira, vSync      ' Make an Input
+                        ANDN dira, videoIn
+                        
+                        waitpne evenOdd,evenOdd
+
+waitvSyncA
+                        mov screenCnt, screenaddr
+                        waitpne vSync,vSync
+                        test ina, evenOdd wz
+               if_z     mov linez, #0
+                        
+                        mov waitCount, cnt
+                        add waitCount,verticalBlank
+                        waitcnt waitCount, #0
+                        
+startLineA              waitpne compSync, compSync                        
+                        waitpeq compSync, compSync
+                                      
+                        mov waitCount, cnt
+                        add waitCount,startLineDelay
+                        waitcnt waitCount, #9
+                        
+                        mov x, #32
+                        
+contlineA               shl buffer, #1
+                        and videoIN,ina wc, nr
+                        muxc buffer, #1 wz
+                        'or buffer, #1
+                 djnz   x, #contlineA 
+                        mov x, #32
+contline1A              shl buffer+1, #1
+                        and videoIN,ina wc, nr
+                        muxc buffer+1, #1 wz
+                 djnz   x, #contline1A
+                        mov x, #32
+contline2A              shl buffer+2, #1
+                        and videoIN,ina wc, nr
+                        muxc buffer+2, #1  wz
+                 djnz   x, #contline2A
+                        mov x, #32                     
+contline3A              shl buffer+3, #1
+                        and videoIN,ina wc, nr
+                        muxc buffer+3, #1  wz
+                        
+                        'or buffer+3, #1 wz
+                 djnz   x, #contline3A
+                        mov x, #32
+contline4A              shl buffer+4, #1
+                        and videoIN,ina wc, nr
+                        muxc buffer+4, #1 wz
+                 djnz   x, #contline4A
+                        mov x, #32
+contline5A              shl buffer+5, #1
+                        and videoIN,ina wc, nr
+                        muxc buffer+5, #1 wz
+                        'or buffer+5, #1
+                 djnz   x, #contline5A
+                        
+                        wrlong buffer, screenCnt
+                        add screenCnt, #4
+                        wrlong buffer+1, screenCnt
+                        add screenCnt, #4
+                        wrlong buffer+2, screenCnt
+                        add screenCnt, #4
+                        wrlong buffer+3, screenCnt
+                        add screenCnt, #4
+                        wrlong buffer+4, screenCnt
+                        add screenCnt, #4
+                        wrlong buffer+5, screenCnt
+                        add screenCnt, #4
+                        add linez, #1
+                        
+                        cmp linez, verticalLines  wc
+                 if_c   jmp #startLineA
+                        
+processFrame
+
+                        ' MAGIC
+
+                    
+setValues               rdlong tmp, xaddr
+                        add tmp,#1
+                        cmp tmp,#196 wc
+              if_nc     mov tmp, #0
+                        wrlong tmp, xaddr
+                        rdlong tmp, yaddr
+                        add tmp,#1
+                        cmp tmp,#250 wc
+              if_nc     mov tmp, #0
+                        wrlong tmp, yaddr
+                        
+                                          
+Loop                    jmp #waitvSyncA
+
+              
+videoOut                long      |< 0
+compSync                long      |< 1
+evenOdd                 long      |< 2
+vSync                   long      |< 3
+videoIn                 long      |< 4
+frameReady              long      |< 5
+VerticalBlank           long      1000
+startLineDelay          long      800
+mHeight                 long      1
+mLine                   long      0
+Delay                   long      180
+verticalLines           long      260
+foo                     long      %11111111111000000000000001111011                        
+                        long      %0
+                        long      %0
+                        long      %0
+                        long      %0
+                        long      %0
+even                    long      %0000
+mx                      long      32
+my                      long      1
+tmp2                    long      0
+buffer                  res       6
+xaddr                   res       1
+yaddr                   res       1
+screenaddr              res       1
+resetBuffer             res       1
+bitCount                res       1
+longCount               res       1
+screenWidth             res       1
+tmp                     res       1
+x                       res       1
+waitCount               res       1
+screenCnt               res       1
+linez                   res       1
+pixel                   res       1
+data                    res       1
+data2                   res       1
+data3                   res       1
+ptr                     res       1
+count                   res       1
+count2                  res       1
+count3                  res       1
+                        fit       496
+
+
+'*********************************
+'*    Clamp Driver.spin          *
+'*********************************
+
+CON
+  '***Uncomment the next two lines if running alone
+  '_clkmode = xtal1 + pll16x
+  '_xinfreq = 5_000_000
+
+VAR
+  long coordx
+  long coordy
+  long currentpattern
+  
+PUB start (startx, starty, p)
+  coordx:=startx
+  coordy:=starty
+  currentpattern:=p
+  
+  cognew(@entry, @coordx)
+
+PUB setCoord (newx, newy)
+
+  case currentpattern
+      1 : coordx := newx
+      2 : coordx := newx
+  case currentpattern
+      1 : coordy:=newy
+      2:  coordy:=newy
+
+DAT
+
+'**********************************
+'* Assembly language clamp driver *
+'**********************************
+
+                        org     0
+entry                   mov     tmp,par
+                        mov addrx, tmp
+                        add     tmp,#4
+                        mov addry, tmp
+                        add     tmp,#4
+                        rdlong currpattern, tmp
+
+                        mov dira, videoOut
+                        ANDN dira, compSync   ' Make an Input
+                        ANDN dira, evenOdd    ' Make an Input
+                        ANDN dira, vSync      ' Make an Input
+                        ANDN dira, videoIn  
+                        waitpne evenOdd,evenOdd
+                        mov screenWidth, #80
+                        'mov resetBuffer, (buffer)
+                        mov buffer, #0
+                        mov buffer+1, #0
+                        mov buffer+2, #0
+waitvSync               waitpne vSync,vSync
+                        test ina, evenOdd wz
+               if_z     mov linez, #0
+                        'mov linez, #0
+                        rdlong  mx,addrx
+                        rdlong  my,addry
+                        
+                        mov waitCount, cnt
+                        add waitCount,verticalBlank
+                        waitcnt waitCount, #0
+               
+startLine               mov mLine, #0
+
+getMLine                'rdlong my, mousey
+                        mov tmp, my
+                        add tmp, mLine
+                        cmp linez, tmp wz
+              if_z      call #fillBuffer
+                        add mLine, #1
+                        cmp mLine, #10 wc
+              if_c      jmp #getMLine
+
+                        waitpne compSync, compSync                        
+                        waitpeq compSync, compSync
+                        
+                        mov waitCount, cnt
+                        add waitCount,startLineDelay
+                        waitcnt waitCount, #9
+
+                        mov x, #32
+contline                shl buffer,#1 wc
+                        muxc outa,videoOut
+                        sub x, #1 wz
+                 if_nz  jmp #contline            
+                        mov x, #32
+contline2               shl buffer+1,#1 wc
+                        muxc outa,videoOut
+                        sub x, #1 wz
+                 if_nz  jmp #contline2 
+                        mov x, #32
+contline3               shl buffer+2,#1 wc
+                        muxc outa,videoOut
+                        sub x, #1 wz
+                 if_nz  jmp #contline3
+                        mov x, #32
+contline4               shl buffer+3,#1 wc
+                        muxc outa,videoOut
+                        sub x, #1 wz
+                 if_nz  jmp #contline4
+                        mov x, #32
+contline5               shl buffer+4,#1 wc
+                        muxc outa,videoOut
+                        sub x, #1 wz
+                 if_nz  jmp #contline5
+                        mov x, #32
+contline6               shl buffer+5,#1 wc
+                        muxc outa,videoOut
+                        sub x, #1 wz
+                 if_nz  jmp #contline6
+                                                
+                        mov outa, #0
+                        add linez, #1
+                        cmp linez, verticalLines  wc
+                 if_c   jmp #startLine
+                 
+
+                        jmp #waitvSync
+                        
+lookupBitmap            mov    data,ptr         ' ptr is a table index (0 to n-1)
+                       
+                        cmp    currpattern,#1 wz 
+               if_z     add    data,#pattern    ' long word index, add table address
+                        cmp    currpattern,#2 wz
+               if_z     add    data,#pattern2
+                        movs   :inline,data     ' have to use instruction modification
+                        nop                     ' need pause here for pipelining
+:inline                 mov    data,0-0         ' get long value from table
+lookupBitmap_ret        ret
+
+fillBuffer              mov ptr, mLine
+                        call #lookupBitmap
+                        mov count, mx
+                        mov data2, data
+                        mov data3, data
+                        mov count2, count
+                        and count2, #63     ' get lowest 5 bits
+                        shr data2, count
+                        mov count3, #32
+                        sub count3, count2
+                        shl data3, count3
+                        cmp count, #32 wc                         
+        if_c            or buffer, data2
+                        cmp count, #0 wz
+        if_c_and_nz     or buffer+1, data3
+                        sub count, #32
+                        cmp count, #32 wc                                 
+        if_c            or buffer+1, data2
+                        cmp count, #0 wz         
+        if_c_and_nz     or buffer+2, data3
+                        sub count, #32
+                        cmp count, #32 wc                                 
+        if_c            or buffer+2, data2
+                        cmp count, #0 wz
+        if_c_and_nz     or buffer+3, data3
+                        sub count, #32
+                        cmp count, #32 wc                                 
+        if_c            or buffer+3, data2
+                        cmp count, #0 wz                         
+        if_c_and_nz     or buffer+4, data3
+                        sub count, #32
+                        cmp count, #32 wc                                 
+        if_c            or buffer+4, data2
+                        cmp count, #0 wz         
+        if_c_and_nz     or buffer+5, data3
+                        sub count, #32
+                        cmp count, #32 wc                                 
+        if_c            or buffer+5, data2
+fillBuffer_ret          ret
+                     
+videoOut                long      |< 0
+compSync                long      |< 1
+evenOdd                 long      |< 2
+vSync                   long      |< 3
+videoIn                 long      |< 4
+VerticalBlank           long      1000
+startLineDelay          long      800
+mHeight                 long      1
+mLine                   long      0
+Delay                   long      180
+verticalLines           long      250
+                        
+pattern                 long      %00000000000111111111000000000000
+                        long      %00000000000111111111000000000000
+                        long      %00000000111111111111111000000000
+                        long      %00000000111111111111111000000000 
+                        long      %10000111111100000111111110000001
+                        long      %10000111111100000111111110000001
+                        long      %01111111110000000001111111111100
+                        long      %01111111110000000001111111111100
+                        long      %00111111000000000000011111110000
+                        long      %00111111000000000000011111110000
+pattern2                long      %10000001000000111000000111111000
+                        long      %10000001000001000100000100000010
+                        long      %10000001000010000010000100000001
+                        long      %10000001000010000010000100000001
+                        long      %10000001000010000010000100000010
+                        long      %10000001000011111100000111111100
+                        long      %10000001000010000010000100000100
+                        long      %10000001000010000010000100000010
+                        long      %11000001000010000010000100000001
+                        long      %11000001000010000010000100000001
+
+even                    long      %0000
+mx                      long      100
+my                      long      100
+tmp2                    long      0
+addrx                   res       1
+addry                   res       1
+currpattern             res       1
+deltax                  res       1
+deltay                  res       1
+resetBuffer             res       1
+bitCount                res       1
+longCount               res       1
+screenWidth             res       1
+tmp                     res       1
+x                       res       1
+waitCount               res       1                 
+linez                   res       1
+pixel                   res       1
+data                    res       1
+data2                   res       1
+data3                   res       1
+ptr                     res       1
+count                   res       1
+count2                  res       1
+count3                  res       1
+buffer                  res       6
+                        fit       496
+-->
+</textarea>
+<div class="footer"></div>
+	
