@@ -2149,25 +2149,24 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 border-bottom-left-radius: 10px;
                 border-bottom-right-radius: 10px;        
             }
-            h1 {
+            h1 { 
+                width: 90%;
+                text-align: center;
                 font-weight: 900;
                 font-size: 28pt;
                 line-height: 28pt;
             }
             .image-caption {
+                margin-right: -18px;
                 font-size: 8pt;
                 display: inline-block;
                 writing-mode: vertical-rl;
                 text-orientation: sideways;
             }
-            p {
-                width: 100%;
+            p, ul, ol {
+                width: 90%;
                 max-width: 840px;
                 margin: 10px auto 10px auto;
-            }
-            ul, ol {
-                max-width: 840px;
-                width: 100%;
             }
             #close img {
                 width: 40px;
@@ -2196,6 +2195,9 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
             }
             .small-img {
                 width: 125px;
+            }
+            .full-width {
+                width: 90%;
             }
             .footer {
                 width: 100%;
@@ -2239,6 +2241,42 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 padding:20px;
                 border:1px dotted #444444;
                 background:#ffffef;
+            }
+            .resource-collection {
+                max-width: 90%;
+            }
+            @media (max-width: 600px) {
+                #reader-content {
+                    font-size: 12pt;
+                    line-height: 14pt;
+                    padding-top: 60px;
+                }
+                .featured-image {
+                    max-width: 300px;
+                }
+                .medium-img {
+                    width: 200px;
+                }
+                .medium-small-img {
+                    width: 100px;
+                }
+                .small-img {
+                    width: 50px;
+                }
+                h1 {
+                    padding: 0px 5px;
+                    font-size: 24pt;
+                    line-height: 24pt;
+                }
+                .footer {
+                    min-height: 200px;
+                }
+                .date-header {
+                    top: -14px;
+                }
+                iframe {
+                    max-width: 300px;
+                }
             }
         </style>
         `;

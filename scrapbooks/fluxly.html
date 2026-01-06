@@ -1,7 +1,6 @@
-<div class="featured-image-wrapper featured-image">
-	<img style="margin:-5px 0px;" src="images/fluxly/screenshot1.png"/>
-	<img style="margin:-5px 0px;" src="images/fluxly/screenshot3.png"/>
-	<img style="margin:-5px 0px;" src="images/fluxly/screenshot4.png"/></div>
+<div class="featured-image-wrapper">
+	<img class="featured-image" src="images/fluxly/screenshot-1-3-4.png"/>
+</div>
 <div class="date-header">2018</div>
 
 <h1>Fluxly: Physics-based Looper</h1>
@@ -17,21 +16,13 @@
 
 <p>You can choose from a bank of built-in sound samples, or record your own samples and play them back in either direction at any speed. By touching two Fluxum and pushing them together you can link them into looping gear train machines. You can also enable movement and let the built-in physics engine take over as the Fluxum bounce around the instrument for random sonic fun.</p>
 
-<div class="featured-image-wrapper featured-image">
-	<img style="margin:-5px 0px;"  src="images/fluxly/screenshot5.png"/>
-	<img style="margin:-5px 0px;"  src="images/fluxly/screenshot6.png"/>
-</div>
+	<img class="featured-image"   src="images/fluxly/screenshot-5-6.png"/>
 
 <p>Recording can be done right in the app, and loops can be up to about 10 seconds long. You can also customize all of the sounds in Bank 1 by using iTunes and the filesharing features of your iPhone or iPad to upload any sound samples from your computer.</p>
 
 <p>Fluxly was built using openFrameworks, Box2d, libPd and Pure Data.</p>
 
-<div class="featured-image-wrapper featured-image">
-	<img style="margin:-5px 0px;width:200px;" src="images/fluxly/screenshot2.png"/>
-	<img style="margin:-5px 0px;width:200px;" src="images/fluxly/screenshot7.png"/>
-	<img style="margin:-5px 0px;width:200px;" src="images/fluxly/screenshot8.png"/>
-	
-</div>
+	<img class="featured-image" src="images/fluxly/screenshot-2-7-8.png"/>	
 
 <img class="featured-image medium-img space-before" src="images/fluxly/bb-friendly.png"/>
 
@@ -147,41 +138,41 @@ Fluxly is written in C++ and uses the <a  target="new" href="http://openframewor
 All of the sound synthesis is done in the embedded Yak Shaver Engine Pure Data patch. There are a few parts to the patch: an input stage, the Yak Shaver engine, and an output stage, which handles panning and reverb. There are also the "scopes" that are arrays that hold the data of the sample so they can be rendered in the app. A block diagram looks like this ("Ofx" below refers to the openFrameworks app that the patch is talking to):
 </p>
 
-	<img class="space-before" src="images/fluxly/figure1.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure1.png"/>
 
 <p>
 	The main interface to the app has the four "subunits" at the top, an interface for testing the on/off and tempo controls, and a section at the bottom for loading the default values. Clicking on the messages to the right will load different samples into the 8 yak shaver channels:
 
-	<img class="space-before" src="images/fluxly/figure2.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure2.png"/>
 
 
 <p>The Yak Shaver engine makes extensive use of send and receive blocks (the "s" an "r" blocks) as well as throw~ and catch~ blocks, which are the audio signal equivalent. The "r" or receive blocks here will catch messages sent from within the patch or from the openFrameworks app.</p>
 
 
-	<img class="space-before" src="images/fluxly/figure3.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure3.png"/>
 
 <p>
 	Each of the Yak Channels (there's 8 of them) loads a WAV file into a buffer and plays it back as long as the on/off toggle is on. The tempo (marked "multiple" here) controls how fast the file is played back. The openFrameworks app sends a message to this inlet every time the angular velocity of one of the Fluxum circles changes. If the app sends a message to the "filename" inlet a new file is read into the buffer.
 </P>
 
-	<img class="space-before" src="images/fluxly/figure4.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure4.png"/>
 
 <p>
 	Each of the voices is panned in the final output depending on the X coordinate of the Fluxum looper. This subunit of the output stage handles the panning of each channel:
 
-	<img class="space-before" src="images/fluxly/figure5.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure5.png"/>
 
 <p>
 	Each of the panned outputs of the 8 channels are added together and run through the Pure Data "Freeverb" processor. The inputs are sent as a message from the app depending on the rotation of the white Fluxum in each scene. The output is toggled on or off when the sample selector is chosen.
 </p>
 
-	<img class="space-before" src="images/fluxly/figure8.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure8.png"/>
 
 <p>
 	Recording is handled by the input stage, which uses Pure Data's analog to digital converter to read in microphone audio and save it to a buffer. When the stop button is pushed a message is sent and the buffer is trimmed to size and saved to the app's documents directory. Right now the limit is about 10 seconds (400000 samples at 44.1kHz, as seen in the "resize" command upper right), but that could easily be changed if there's interest in longer samples.
 </p>
 
-	<img class="space-before" src="images/fluxly/figure6.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure6.png"/>
 
 <p>
 	The audio output is also sent to the "scopes" subunit, a group of arrays that are sent back periodically to the main app and used to draw the waveform on the screen.
@@ -197,7 +188,7 @@ One of the benefits of using openFrameworks is that it provides a simplified fra
 </p>
 
 
-	<img class="space-before" src="images/fluxly/figure9.png"/>
+	<img class="full-width space-before" src="images/fluxly/figure9.png"/>
 
 
 <div class="footer"></div>
