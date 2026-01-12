@@ -1087,7 +1087,9 @@ class RavelElement extends HTMLElement {
 				 'docked', 'dock-target', 'state', 'size', 'theme',
 			     'positioned', 'width', 'height', 'x', 'y', 'scale', 
 				 'no-click', 'show-feedback', 'virtual-click', 'virtual-drag', 'virtual-release',
-				 'message-on-click', 'signals-in', 'signals-out', 'streams'];
+				 'message-on-click', 'signals-in', 'signals-out', 'streams',
+				'role', 'aria-roledescription', 'tabindex', 'aria-label', 'aria-description'
+		];
     }
 
 	sendMessage(msg, cmd, content) {
@@ -2087,9 +2089,9 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 overflow:hidden;
                 touch-action: none;
                 cursor: pointer;
-                overscroll-behavior: contain; 
+                overscroll-behavior: none; 
             }
-            #container img {
+            #icon {
                 min-width: 200px;
                 width: 100%;
                 max-width: 200px;
@@ -2099,6 +2101,16 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 user-select: none;
                 display: block;
             }
+            #container:focus {
+                background-color: #ffff00;
+                outline: 5px solid #ffff00; 
+            } 
+
+            #close:focus, a:focus {
+                outline: 5px solid #ffff00; 
+                background-color: #ffff00;
+            }
+            
             #reader {
                 display: none;
                 visibility: hidden;
@@ -2113,6 +2125,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 background-color: rgba(255, 255, 255, 1.0);
                 box-shadow : 0px 0px 0px 10px rgba(255, 255, 255, 0.5);
                 overflow: hidden;
+                overscroll-behavior: none; 
                 transition: visibility 0.3s ease;
             }
             #reader-content {
@@ -2121,7 +2134,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 line-height: 18pt;
                 height: 100%;
                 overflow-y: scroll;
-                overscroll-behavior: contain; 
+                overscroll-behavior: none; 
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -2168,11 +2181,16 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                 max-width: 840px;
                 margin: 10px auto 10px auto;
             }
-            #close img {
-                width: 40px;
+            #close {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
                 position: absolute;
                 right: 20px;
                 top: 50px;
+                border: none;
                 z-index: 3;
                 padding: 10px;
                 background-color: #ffffff;
@@ -2272,7 +2290,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
                     min-height: 200px;
                 }
                 .date-header {
-                    top: -14px;
+                    top: -12px;
                 }
                 iframe {
                     max-width: 300px;
@@ -2285,14 +2303,16 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
     static get html() { 
         return `
         <div id="blocker"></div>
-        <div id="container">
-        <img id="icon" src="${_common_ravelComponentPath_js__WEBPACK_IMPORTED_MODULE_2__.ravelComponentPath}/images/default-backgrounds/0.png"/>
-        </div>
-        <div id="reader">
-        <div id="close"><img src="${_common_ravelComponentPath_js__WEBPACK_IMPORTED_MODULE_2__.ravelComponentPath}/images/close-black.svg"/></div>
-        <div id="reader-content">
-        <div id="loading" class="pulse">🧶</div>
-        </div>
+        <div id="container" tabindex="0">
+            <img id="icon" tabindex="-1" src="${_common_ravelComponentPath_js__WEBPACK_IMPORTED_MODULE_2__.ravelComponentPath}/images/default-backgrounds/0.png"/>
+            <div id="reader" role="dialog" aria-modal="true" tabindex="-1">
+                <div id="reader-content" tabindex="0">
+                    <div id="loading">🧶</div>
+                </div>
+                <button id="close" type="button" aria-label="Close">
+                    <img src="${_common_ravelComponentPath_js__WEBPACK_IMPORTED_MODULE_2__.ravelComponentPath}/images/close-black.svg">
+                </button>
+            </div>
         </div>
         `;
     }
@@ -2322,11 +2342,13 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
     
     initialize() {
         this.container = this.shadowRoot.querySelector('#container');
+        this.iconButton = this.shadowRoot.querySelector('#icon');
         this.reader = this.shadowRoot.querySelector('#reader');
+        this.readerContent = this.shadowRoot.querySelector('#reader-content');
         this.blocker = this.shadowRoot.querySelector('#blocker');
         this.close = this.shadowRoot.querySelector('#close');
         this.anchor = null;
-        this.label = '';
+        this.label = 'label';
         this.src = null;
         this.icon = `${_common_ravelComponentPath_js__WEBPACK_IMPORTED_MODULE_2__.ravelComponentPath}/images/default-backgrounds/0.png`;
         this.readerOpen = false;
@@ -2335,20 +2357,55 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
     setup = () => {
         this.observedMessages = ['scrapbook'];
         this.subscribe(this.observedMessages);   
-        this.container.addEventListener('click', this.handleClick);
-        this.close.addEventListener('click', this.handleClick);
         this.shadowRoot.querySelector('#icon').src = this.icon;
+        this.container.addEventListener('keydown', this.handleKeyDown);
+        this.iconButton.addEventListener('click', this.handleClick);
+        this.close.addEventListener('keydown', this.handleKeyDown);
+        this.close.addEventListener('click', this.handleClick);
         this.addEventListener('scrapbook', this.handleExternalMessage);
+        this.container.setAttribute('aria-label', this.label);
+        this.container.setAttribute('role', 'button');
+        this.iconButton.setAttribute('aria-label', this.label);
     }
     
     teardown = () => {
         this.unsubscribe(this.observedMessages);
-        this.container.removeEventListener('click', this.handleClick);
-        this.removeEventListener('scrapbook', this.handleExternalMessage);
+        this.container.removeEventListener('keydown', this.handleKeyDown);
+        this.iconButton.removeEventListener('click', this.handleClick);
+        this.close.removeEventListener('keydown', this.handleKeyDown);
         this.close.removeEventListener('click', this.handleClick);
+        this.removeEventListener('scrapbook', this.handleExternalMessage);
     }
 
     handleClick = (evt) => {
+        console.log(evt.target);
+        evt.preventDefault();
+        evt.stopPropagation();
+        if (this.externalLink) {
+            console.log('Send user to ' + this.externalLink);
+        }
+        if (this.readerOpen) {
+            this.closeScrapbook();
+        } else {
+            this.openScrapbook();
+        }
+    }
+
+    handleKeyDown = (evt) => {
+        // Capture tab events on close to keep focus within the reader
+        if ((evt.target === this.close) && (evt.key === 'Tab') && (!evt.shiftKey)) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            this.closeScrapbook();
+            return;
+        }
+        // Capture back tab on container
+        if ((evt.target === this.container) && (evt.key === 'Tab') && (evt.shiftKey)) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            return;
+        }
+        if ((evt.key !== 'Enter') && (evt.key !== 'Space')) return;
         evt.preventDefault();
         evt.stopPropagation();
         if (this.externalLink) {
@@ -2363,7 +2420,6 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
 
     handleExternalMessage = (evt) => {
         if (!this.anchor || !evt.detail.content) return;
-        console.log('checking ' + this.anchor + ' vs. ' + evt.detail.content);
         // responds to an open-scrapbook event targeting this anchor
         if (evt.detail.cmd === 'open') {
             if (evt.detail.content === this.anchor) {
@@ -2389,7 +2445,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
         this.blocker.style.display = 'block';
         this.fetchScrapbook();
         this.container.classList.add('selected');
-        
+        document.querySelector('body').style.overflow = 'hidden';
     }
 
     closeScrapbook = () => {
@@ -2399,6 +2455,8 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
         this.blocker.style.display = 'none';
         this.shadowRoot.querySelector('#reader-content').innerHTML = `<div id="loading" class="pulse">🧶</div>`;
         this.container.classList.remove('selected');
+        this.container.focus();
+        document.querySelector('body').style.overflow = 'auto';
     }
 
     fetchScrapbook = () => {
@@ -2414,6 +2472,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
             .then(response => response.text())
             .then(text => {
                 this.shadowRoot.querySelector('#reader-content').innerHTML = text;
+                this.readerContent.focus();
             })
             .catch(error => {
                 console.warn(error);

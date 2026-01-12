@@ -6,10 +6,14 @@
     <title>Fluxly and Frob / Shawn Wallace</title>
     <meta name="description" content="Fluxly and Frob / Shawn Wallace">
     <link rel="icon" type="image/x-icon" href="./fav-icon/favicon.ico">
-    <script language="javascript" type="text/javascript" src="./ravel-dist/libs/p5.min.js"></script>
-    <script language="javascript" type="text/javascript" src="./ravel-dist/libs/Box2d.min.js"></script>
-    <!--<script type="module"  src="./index.js"></script>-->
-	<script type="module"  src="./ravel-dist/bundle.js"></script>
+    <script language="javascript" type="text/javascript" description=""
+			src="./ravel-dist/libs/p5.min.js"></script>
+    <script language="javascript" type="text/javascript" description=""
+			src="./ravel-dist/libs/Box2d.min.js"></script>
+    <!--<script type="module"  description=""
+			src="./index.js"></script>-->
+	<script type="module"  description=""
+			src="./ravel-dist/bundle.js"></script>
     <link rel="stylesheet" href="./styles.css">
 	<link rel="stylesheet" href="./fonts/Serif/cmun-serif.css">
 	<link rel="stylesheet" href="./fonts/silkscreen.css">
@@ -17,81 +21,93 @@
 <body>
 <ravel-crossfade-background></ravel-crossfade-background>
 <div id="page-wrapper">
-	<div class="grid-container">
+	<div class="grid-container" tabindex="-1">
 		<!--Fluxly-->
 		<ravel-scrapbook 
 			anchor="fluxly" 
-			label=""  
+			label="Fluxly"  
+			description=""
 			src="scrapbooks/fluxly.html"
 			icon="images/thumbs/fluxly.png"
 		></ravel-scrapbook>
 		<!--cryptozoo-->
 		<ravel-scrapbook 
 			anchor="cryptozoologic"
-			label="" 
+			label="cryptozoologic" 
+			description=""
 			src="scrapbooks/cryptozoologic.html"
 			icon="images/thumbs/cryptozoologic.png"
 		></ravel-scrapbook>
 		<!--Mockerspace/Fakerspace-->
 		<ravel-scrapbook 
 			anchor="mockerspace-fakerspace"
-			label="" 
+			label="mockerspace fakerspace" 
+			description=""
 			src="scrapbooks/mockerspace-fakerspace.html"
 			icon="images/thumbs/mockerspace1.png"
 		></ravel-scrapbook>
 		<!--fs variations-->
 		<ravel-scrapbook 
 			anchor="fluxamasynth-modules"
-			label="" 
+			label="fluxamasynth modules" 
+			description=""
 			src="scrapbooks/fluxamasynth-modules.html"
 			icon="images/thumbs/fluxamasynth.jpg"
 		></ravel-scrapbook>
 	</div>
 
-	<div id="title-section">FLUXLY + FROB / SHAWN WALLACE</div>
+	<div id="title-section" tabindex="0">FLUXLY + FROB / SHAWN WALLACE</div>
 
 	<div class="grid-container">
 		<ravel-scrapbook 
-		    src="scrapbooks/cryptid-garden.html"
+		    description=""
+			src="scrapbooks/cryptid-garden.html"
 			icon="images/thumbs/cryptid-garden-thumb.png"
 		    anchor="cryptid-garden" label="Cryptid Garden"
 		></ravel-scrapbook>
 		<ravel-scrapbook 
-		    src="scrapbooks/mokrbot.html"
+		    description=""
+			src="scrapbooks/mokrbot.html"
 			icon="images/thumbs/mokrbot-thumb.png"
 		    anchor="mokrbot" label="Mokrbot Poster"
 		></ravel-scrapbook>
 		<ravel-scrapbook 
-		    src="scrapbooks/the-trillionaires.html"
+		    description=""
+			src="scrapbooks/the-trillionaires.html"
 			icon="images/thumbs/trillionaires-thumb.png"
 			anchor="trillionaires" label="The Trillionaires"
 		></ravel-scrapbook>
 		<ravel-scrapbook 
-		    src="scrapbooks/gibbon-shop.html"
+		    description=""
+			src="scrapbooks/gibbon-shop.html"
 			icon="images/thumbs/gibbon-shop-thumb.png"
 			anchor="gibbon-shop" label="Items From The Gibbon Shop"
 		></ravel-scrapbook>	
 		<ravel-scrapbook 
-		    src="scrapbooks/mzo-reconsidered.html"
+		    description=""
+			src="scrapbooks/mzo-reconsidered.html"
 			icon="images/thumbs/mzo-thumb.png"
 			anchor="mzo-reconsidered" label="MZO Reconsidered"
 		></ravel-scrapbook>
 		<ravel-scrapbook 
-		    src="scrapbooks/cgol.html"
+		    description=""
+			src="scrapbooks/cgol.html"
 			icon="images/thumbs/cgol-thumb.png"
-			anchor="cgol" label="CGOL"
+			anchor="cgol" label="Chase's Game of Life"
 		></ravel-scrapbook>
 		<!--Fluxly Arcade-->
 		<ravel-scrapbook 
 			anchor="fluxlyarcade"
-			label="" 
+			label="fluxly arcade" 
+			description=""
 			src="scrapbooks/fluxlyarcade.html"
 			icon="images/thumbs/fluxly-arcade.png"
 	    ></ravel-scrapbook>
 		<!--Sketchbook StyleGAN-->
 		<ravel-scrapbook 
 			anchor="sketchbookGAN"
-			label="" 
+			label="sketchbook GAN" 
+			description=""
 			src="scrapbooks/sketchbookGAN.html"
 			icon="images/thumbs/sketchbookGAN.png"
 	    ></ravel-scrapbook>
@@ -100,6 +116,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/snoofy.html"
 			icon="images/thumbs/snoofy400.png"
 	    ></ravel-scrapbook>
@@ -109,6 +126,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/bloopnet.html"
 			icon="images/thumbs/bloopnet.png"
 	    ></ravel-scrapbook>
@@ -117,6 +135,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="mokrbot-gen.html"
 			icon="images/thumbs/mockerspace2.png"
 	    ></ravel-scrapbook>
@@ -125,6 +144,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/fluxly-boombox.html"
 			icon="images/thumbs/fluxlyboombox.png"
 	    ></ravel-scrapbook>
@@ -133,6 +153,7 @@
 		<!--<ravel-scrapbook 
 			anchor="p5-sketches"
 			label="" 
+			description=""
 			src="p5-sketches.html"
 			icon="images/thumbs/diaglyphs.png"
 	    ></ravel-scrapbook>
@@ -142,6 +163,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="http://fluxly.com/orb-project.us"
 			icon="images/thumbs/orbproject.png"
 	    ></ravel-scrapbook>
@@ -150,6 +172,7 @@
 	    <!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/redacted-tower.html"
 			icon="images/thumbs/redactedtower.png"
 	    ></ravel-scrapbook>
@@ -158,6 +181,7 @@
 		<ravel-scrapbook 
 			anchor="unruly-studios"
 			label="" 
+			description=""
 			src="scrapbooks/unruly-studios.html"
 			icon="images/thumbs/unrulystudios.png"
 	    ></ravel-scrapbook>
@@ -165,6 +189,7 @@
 		<ravel-scrapbook 
 			anchor="patches"
 			label="" 
+			description=""
 			src="scrapbooks/patches.html"
 			icon="images/thumbs/patches.jpg"
 	    ></ravel-scrapbook>
@@ -174,6 +199,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/markc.html"
 			icon="images/thumbs/markc.png"
 	    ></ravel-scrapbook>-->
@@ -181,6 +207,7 @@
 		<ravel-scrapbook 
 			anchor="thompson"
 			label="" 
+			description=""
 			src="projects/thompson.html"
 			icon="images/thumbs/thompson.png"
 	    ></ravel-scrapbook>
@@ -189,6 +216,7 @@
 		<ravel-scrapbook 
 			anchor="bigfriend"
 			label="" 
+			description=""
 			src="scrapbooks/big-friend.html"
 			icon="images/thumbs/bigfriend.png"
 	    ></ravel-scrapbook>
@@ -196,6 +224,7 @@
 		<!--<ravel-scrapbook 
 			anchor="soundboxen"
 			label="" 
+			description=""
 			src="scrapbooks/soundboxen.html"
 			icon="images/thumbs/yakshaver.png"
 	    ></ravel-scrapbook>
@@ -203,6 +232,7 @@
 		<ravel-scrapbook 
 			anchor="benjolin"
 			label="" 
+			description=""
 			src="scrapbooks/benjolin2.html"
 			icon="images/thumbs/benjolin2.png">
 		</ravel-scrapbook>
@@ -210,6 +240,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/feral-vocaloid.html"
 			icon="images/thumbs/feralvocaloid.png"
 	    ></ravel-scrapbook>
@@ -218,6 +249,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="boxenlines.html"
 			icon="images/thumbs/boxenlines.png"
 	    ></ravel-scrapbook>
@@ -226,6 +258,7 @@
 		<ravel-scrapbook 
 			anchor="electronics-graveyard"
 			label="" 
+			description=""
 			src="scrapbooks/electronics-graveyard.html"
 			icon="images/thumbs/graveyard.png"
 	    ></ravel-scrapbook>
@@ -235,6 +268,7 @@
 		<ravel-scrapbook 
 			anchor="reverbalizer"
 			label="" 
+			description=""
 			src="scrapbooks/reverbalizer.html"
 			icon="images/thumbs/reverbalizer.png"
 	    ></ravel-scrapbook>
@@ -242,6 +276,7 @@
 		<ravel-scrapbook 
 			anchor="oh-eye"
 			label="" 
+			description=""
 			src="scrapbooks/oh-eye.html"
 			icon="images/thumbs/oheye.png"
 	    ></ravel-scrapbook>
@@ -249,6 +284,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/benjolin.html"
 			icon="images/thumbs/benjolin.png"
 	    ></ravel-scrapbook>
@@ -259,6 +295,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/arduino-poster.html"
 			icon="images/thumbs/arduinoposter.png"
 	    ></ravel-scrapbook>
@@ -266,6 +303,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/brickbridge.html"
 			icon="images/thumbs/brickbridge.png"
 	    ></ravel-scrapbook>-->
@@ -273,6 +311,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/signs.html"
 			icon="images/thumbs/signs.jpg"
 	    ></ravel-scrapbook>
@@ -281,12 +320,14 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/labs-workshops.html"
 			icon="images/thumbs/fablab.jpg"
 	    ></ravel-scrapbook><!--Modern Device-->
 		<ravel-scrapbook 
 			anchor="modern-device"
 			label="" 
+			description=""
 			src="scrapbooks/modern-device.html"
 			icon="images/thumbs/moderndevice.jpg"
 	    ></ravel-scrapbook>
@@ -294,6 +335,7 @@
 		<ravel-scrapbook 
 			anchor="fab-academy"
 			label="" 
+			description=""
 			src="scrapbooks/fab-academy.html"
 			icon="images/thumbs/fabacademy.jpg"
 	    ></ravel-scrapbook>
@@ -303,6 +345,7 @@
 		<ravel-scrapbook 
 			anchor="gsw-raspi"
 			label="" 
+			description=""
 			src="scrapbooks/gsw-raspi.html"
 			icon="images/thumbs/gsw.png"
 	    ></ravel-scrapbook>
@@ -310,6 +353,7 @@
 		<ravel-scrapbook 
 			anchor="laughing-dice"
 			label="" 
+			description=""
 			src="scrapbooks/laughing-dice.html"
 			icon="images/thumbs/laughingdice.jpg"
 	    ></ravel-scrapbook>
@@ -319,6 +363,7 @@
 		<ravel-scrapbook 
 			anchor="drom"
 			label="" 
+			description=""
 			src="scrapbooks/drom.html"
 			icon="images/thumbs/drom.png"
 	    ></ravel-scrapbook>
@@ -326,6 +371,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/make-graphics.html"
 			icon="images/thumbs/3dthumb.jpg"
 	    ></ravel-scrapbook>
@@ -335,6 +381,7 @@
 		<ravel-scrapbook 
 			anchor="noisemusick"
 			label="" 
+			description=""
 			src="scrapbooks/noisemusick.html"
 			icon="images/thumbs/noisemusick.png"
 	    ></ravel-scrapbook>
@@ -342,6 +389,7 @@
 		<ravel-scrapbook 
 			anchor="oreilly"
 			label="" 
+			description=""
 			src="scrapbooks/oreilly.html"
 			icon="images/thumbs/oreilly.png"
 	    ></ravel-scrapbook>
@@ -351,6 +399,7 @@
 		<ravel-scrapbook 
 			anchor="fluxamasynth-shield"
 			label="" 
+			description=""
 			src="scrapbooks/fluxamasynth-shield.html"
 			icon="images/thumbs/fluxsynth1.jpg"
 	    ></ravel-scrapbook>
@@ -358,6 +407,7 @@
 		<ravel-scrapbook 
 			anchor="otpc"
 			label="" 
+			description=""
 			src="scrapbooks/otpc.html"
 			icon="images/thumbs/otpc.png"
 	    ></ravel-scrapbook>
@@ -365,6 +415,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/piroulette.html"
 			icon="images/thumbs/piroulette.png"
 	    ></ravel-scrapbook>-->
@@ -376,6 +427,7 @@
 		<ravel-scrapbook 
 			anchor="noisemusick-kit"
 			label="" 
+			description=""
 			src="scrapbooks/noisemusick-kit.html"
 			icon="images/thumbs/noisemusick2.jpg"
 	    ></ravel-scrapbook>
@@ -383,6 +435,7 @@
 		<ravel-scrapbook 
 			anchor="hair-and-balanced"
 			label="" 
+			description=""
 			src="scrapbooks/hair-and-balanced.html"
 			icon="images/thumbs/hairbalanced.jpg"
 	    ></ravel-scrapbook>
@@ -390,6 +443,7 @@
 		<!--<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/drawbot-portraits.html"
 			icon="images/thumbs/drawbotbezier.png"
 	    ></ravel-scrapbook>-->
@@ -397,6 +451,7 @@
 		<ravel-scrapbook 
 			anchor="drawbot"
 			label="" 
+			description=""
 			src="scrapbooks/drawbot.html"
 			icon="images/thumbs/drawbot.jpg"
 	    ></ravel-scrapbook>
@@ -404,6 +459,7 @@
 		<ravel-scrapbook 
 			anchor="the-dreyfus"
 			label="" 
+			description=""
 			src="scrapbooks/the-dreyfus.html"
 			icon="images/thumbs/dreyfus-thumb.png"
 	    ></ravel-scrapbook>
@@ -411,6 +467,7 @@
 		<ravel-scrapbook 
 			anchor="as220-empire"
 			label="" 
+			description=""
 			src="scrapbooks/as220-empire.html"
 			icon="images/thumbs/empire-thumb.png"
 	    ></ravel-scrapbook>
@@ -419,6 +476,7 @@
 		<ravel-scrapbook 
 			anchor="perl-books"
 			label="" 
+			description=""
 			src="scrapbooks/perl-books.html"
 			icon="images/thumbs/pgp.jpg"
 	    ></ravel-scrapbook>
@@ -426,6 +484,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/mzo.html"
 			icon="images/thumbs/mzo.png"
 	    ></ravel-scrapbook>-->
@@ -441,6 +500,7 @@
 		<ravel-scrapbook 
 			anchor=""
 			label="" 
+			description=""
 			src="scrapbooks/solo.html"
 			icon="images/thumbs/solo.gif"
 	    ></ravel-scrapbook>
@@ -448,6 +508,7 @@
 		<ravel-scrapbook 
 			anchor="panic-band"
 			label="" 
+			description=""
 			src="scrapbooks/panic-band.html"
 			icon="images/thumbs/panicband.png"
 	    ></ravel-scrapbook>
@@ -457,6 +518,7 @@
 		<ravel-scrapbook 
 			anchor="amoebic-ensemble" 
 			label="" 
+			description=""
 			src="scrapbooks/amoebic-ensemble.html"
 			icon="images/thumbs/amoebic.png"
 	    ></ravel-scrapbook>
@@ -464,6 +526,7 @@
 		<ravel-scrapbook 
 			anchor="bolero-club"
 			label="" 
+			description=""
 			src="scrapbooks/bolero/bolero.html"
 			icon="images/thumbs/bolero.jpg"
 	    ></ravel-scrapbook>
@@ -471,6 +534,7 @@
 		<ravel-scrapbook 
 			anchor="complex-magazine"
 			label="" 
+			description=""
 			src="scrapbooks/complex-magazine.html"
 			icon="images/thumbs/complex.png"
 	    ></ravel-scrapbook>
@@ -478,6 +542,7 @@
 		<ravel-scrapbook 
 			anchor="frodus"
 			label="" 
+			description=""
 			src="scrapbooks/frodus/frodus.html"
 			icon="images/thumbs/frodus.png"
 	    ></ravel-scrapbook>
