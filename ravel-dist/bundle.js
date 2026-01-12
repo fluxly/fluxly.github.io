@@ -2381,7 +2381,8 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
         evt.preventDefault();
         evt.stopPropagation();
         if (this.externalLink) {
-            console.log('Send user to ' + this.externalLink);
+            window.open(this.externalLink, '_blank', 'noopener,noreferrer');
+            return;
         }
         if (this.readerOpen) {
             this.closeScrapbook();
@@ -2410,7 +2411,8 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
         evt.preventDefault();
         evt.stopPropagation();
         if (this.externalLink) {
-            console.log('Send user to ' + this.externalLink);
+            window.open(this.externalLink, '_blank', 'noopener,noreferrer');
+            return;
         }
         if (this.readerOpen) {
             this.closeScrapbook();
