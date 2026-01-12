@@ -2358,7 +2358,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
         this.observedMessages = ['scrapbook'];
         this.subscribe(this.observedMessages);   
         this.shadowRoot.querySelector('#icon').src = this.icon;
-        this.container.addEventListener('keydown', this.handleKeyDown);
+        this.addEventListener('keydown', this.handleKeyDown);
         this.iconButton.addEventListener('click', this.handleClick);
         this.close.addEventListener('keydown', this.handleKeyDown);
         this.close.addEventListener('click', this.handleClick);
@@ -2378,7 +2378,6 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
     }
 
     handleClick = (evt) => {
-        console.log(evt.target);
         evt.preventDefault();
         evt.stopPropagation();
         if (this.externalLink) {
@@ -2392,6 +2391,7 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
     }
 
     handleKeyDown = (evt) => {
+        //console.log((this.readerOpen && (evt.target === this.container) && (evt.key === 'Tab') && (evt.shiftKey)));
         // Capture tab events on close to keep focus within the reader
         if ((evt.target === this.close) && (evt.key === 'Tab') && (!evt.shiftKey)) {
             evt.preventDefault();
@@ -2400,7 +2400,8 @@ class RavelScrapbook extends _base_ravel_element_src_RavelElement_js__WEBPACK_IM
             return;
         }
         // Capture back tab on container
-        if ((evt.target === this.container) && (evt.key === 'Tab') && (evt.shiftKey)) {
+        console.log((this.readerOpen && (evt.target === this.container) && (evt.key === 'Tab') && (evt.shiftKey)));
+        if (this.readerOpen && (evt.target === this.container) && (evt.key === 'Tab') && (evt.shiftKey)) {
             evt.preventDefault();
             evt.stopPropagation();
             return;
